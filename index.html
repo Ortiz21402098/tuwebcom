@@ -6,31 +6,70 @@
     <link rel="shortcut icon" href="./imagenes/logo3.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <title>Tu Web_com - Desarrollo de Software y Diseño Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <title>Tu Web_com — Desarrollo de Software y Diseño Web</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #0c0c12;
+            --surface: #13131f;
+            --surface2: #1c1c2e;
+            --gold: #f5a623;
+            --gold-light: #ffc85e;
+            --gold-glow: rgba(245, 166, 35, 0.15);
+            --cyan: #00d4e8;
+            --text: #e8e8f2;
+            --text-muted: #7878a0;
+            --text-dim: #4a4a6a;
+            --border: rgba(255,255,255,0.07);
+            --radius: 16px;
+            --radius-lg: 24px;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Header */
+        /* ─── NOISE OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+        /* ─── HEADER ─── */
         .header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(26, 35, 126, 0.95);
-            backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.1s ease;
+            padding: 1.2rem 0;
+            transition: all 0.4s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(12, 12, 18, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.8rem 0;
         }
 
         .nav {
@@ -45,435 +84,886 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00bcd4;
+            gap: 12px;
+            text-decoration: none;
         }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #0c0c12;
+            font-family: 'Syne', sans-serif;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text span { color: var(--gold); }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-muted);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: #00bcd4;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background: #00bcd4;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            animation: float 5s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateX(-50px) translateY(-50px); }
-            50% { transform: translateX(50px) translateY(50px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: slideInUp 1s ease 0.5s forwards;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: slideInUp 1s ease 0.7s forwards;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: slideInUp 1s ease 0.9s forwards;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #00bcd4, #0099cc);
-            color: white;
-            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 188, 212, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #667eea;
-            transform: translateY(-3px);
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background: #f8fafc;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            color: #718096;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(45deg, #00bcd4, #0099cc);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(45deg, #00bcd4, #0099cc);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-        }
-
-        .service-card p {
-            color: #718096;
-            line-height: 1.6;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            padding: 100px 0;
-            background: white;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(0, 188, 212, 0.9), rgba(0, 153, 204, 0.9));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-overlay h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-overlay p {
-            text-align: center;
-            padding: 0 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .btn-view-project {
-            background: white;
-            color: #00bcd4;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-view-project:hover {
-            background: #f0f8ff;
-            transform: scale(1.05);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: slideInDown 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideInDown {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-header {
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px 15px 0 0;
-            position: relative;
-        }
-
-        .close {
-            color: white;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            opacity: 0.7;
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .project-image {
-            width: 100%;
-            max-width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .project-details h4 {
-            color: #2d3748;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .project-details p {
-            color: #718096;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tech-tag {
-            background: #e2f8ff;
-            color: #0099cc;
-            padding: 5px 12px;
-            border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.3s;
         }
 
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: #0c0c12 !important;
+            padding: 0.55rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: all 0.3s !important;
         }
 
-        .contact-content {
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(245,166,35,0.35) !important;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu a:hover { color: var(--gold); }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(245,166,35,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 20% 80%, rgba(0,212,232,0.05) 0%, transparent 50%),
+                var(--bg);
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 2;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
 
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gold-glow);
+            border: 1px solid rgba(245,166,35,0.3);
+            color: var(--gold);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.8s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: #0c0c12;
+            box-shadow: 0 8px 24px rgba(245,166,35,0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(245,166,35,0.45);
+        }
+
+        .btn-ghost {
+            background: var(--border);
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero visual */
+        .hero-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeLeft 0.9s ease 0.6s forwards;
+        }
+
+        .hero-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .hero-card-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-stat-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .hero-stat {
+            flex: 1;
+        }
+
+        .hero-stat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .feature-item .check {
+            width: 20px;
+            height: 20px;
+            background: var(--gold-glow);
+            border: 1px solid rgba(245,166,35,0.4);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            color: var(--gold);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeLeft {
+            from { opacity: 0; transform: translateX(24px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ─── DIFFERENTIATOR STRIP ─── */
+        .diff-strip {
+            padding: 4rem 0;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .diff-strip .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .diff-item {
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .diff-item:last-child { border-right: none; }
+
+        .diff-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .diff-text h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+        }
+
+        .diff-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ─── SECTION DEFAULTS ─── */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section { padding: 6rem 0; }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .section-title span { color: var(--gold); }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 520px;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        /* ─── WHY US ─── */
+        .why-us {
+            background: var(--bg);
+            position: relative;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .why-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .why-card:hover {
+            border-color: rgba(245,166,35,0.3);
+            background: var(--surface2);
+            transform: translateX(6px);
+        }
+
+        .why-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gold-glow);
+            border: 1px solid rgba(245,166,35,0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .why-card h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .why-card p {
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .why-visual {
+            position: relative;
+        }
+
+        .why-quote {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--gold);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+        }
+
+        .why-quote blockquote {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--text);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-quote blockquote strong {
+            color: var(--gold);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .why-signature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .why-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #0c0c12;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .why-signature-text small {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .why-signature-text p {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* ─── SERVICES ─── */
+        .services {
+            background: var(--surface);
+            position: relative;
+        }
+
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: linear-gradient(to top, var(--gold-glow), transparent);
+            transition: height 0.35s ease;
+        }
+
+        .service-card:hover {
+            border-color: rgba(245,166,35,0.35);
+            transform: translateY(-6px);
+        }
+
+        .service-card:hover::after { height: 100%; }
+
+        .service-card-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--gold-glow);
+            border-color: rgba(245,166,35,0.4);
+        }
+
+        .service-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── PORTFOLIO ─── */
+        .portfolio { background: var(--bg); }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .portfolio-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.35s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            border-color: rgba(245,166,35,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .portfolio-thumb {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-thumb-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+            z-index: 1;
+        }
+
+        .portfolio-body {
+            padding: 1.5rem;
+        }
+
+        .portfolio-tag {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-body h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-body p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tech-pills {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 500;
+        }
+
+        .btn-details {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .btn-details:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* ─── MODAL ─── */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(6px);
+            animation: fadeIn 0.25s ease;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-content {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 780px;
+            margin: 2rem auto;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: var(--surface2);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .close {
+            width: 36px;
+            height: 36px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 300;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+        .modal-body { padding: 2rem; }
+
+        .swiper { border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
+        .swiper img { width: 100%; height: 280px; object-fit: cover; }
+        .swiper-button-next, .swiper-button-prev { color: var(--gold) !important; }
+        .swiper-pagination-bullet-active { background: var(--gold) !important; }
+
+        .project-image { width: 100%; height: 260px; object-fit: cover; border-radius: var(--radius); margin-bottom: 1.5rem; }
+
+        .project-details h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gold);
+            margin-bottom: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .project-details p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 0.4rem;
+        }
+
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+
+        .tech-tag {
+            background: var(--gold-glow);
+            border: 1px solid rgba(245,166,35,0.3);
+            color: var(--gold);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* ─── CONTACT ─── */
+        .contact {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: start;
+            margin-top: 4rem;
         }
 
         .contact-item {
@@ -483,297 +973,570 @@
             margin-bottom: 1.5rem;
         }
 
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
+        .contact-icon-wrap {
+            width: 44px;
+            height: 44px;
+            background: var(--gold-glow);
+            border: 1px solid rgba(245,166,35,0.3);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
 
-        .contact-form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+        .contact-item-text strong {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 3px;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .contact-item-text a, .contact-item-text span {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
+
+        .contact-item-text a:hover { color: var(--gold); }
+
+        .contact-form-wrap {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+        }
+
+        .contact-form-wrap h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-wrap p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .form-group { margin-bottom: 1.25rem; }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
             font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.5rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: none;
+            padding: 12px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: 'DM Sans', sans-serif;
+            transition: border-color 0.3s;
+            outline: none;
         }
 
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: var(--text-dim); }
+
+        .form-group input:focus,
+        .form-group textarea:focus { border-color: rgba(245,166,35,0.5); }
+
+        .form-group textarea { height: 110px; resize: vertical; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
         .form-status {
             margin-top: 1rem;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.87rem;
+            font-weight: 500;
+            display: none;
         }
 
         .form-status.success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.3);
+            color: #4ade80;
         }
 
         .form-status.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #f87171;
         }
 
-        /* Footer */
+        /* ─── FOOTER ─── */
         .footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
         }
 
-        .social-links {
+        .footer-inner {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
+
+        .footer-copy {
+            font-size: 0.83rem;
+            color: var(--text-dim);
+        }
+
+        .footer-copy span { color: var(--text-muted); }
+
+        .social-links { display: flex; gap: 0.75rem; }
 
         .social-link {
-            width: 40px;
-            height: 40px;
-            background: #333;
-            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 9px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             text-decoration: none;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.3s;
         }
 
         .social-link:hover {
-            background: #00bcd4;
-            transform: scale(1.1);
+            border-color: rgba(245,166,35,0.4);
+            background: var(--gold-glow);
+            transform: translateY(-2px);
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav {
-                padding: 0 1rem;
-            }
+        /* ─── WHATSAPP FAB ─── */
+        .whatsapp-fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 998;
+            width: 56px;
+            height: 56px;
+            background: #25d366;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.6rem;
+            box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+            transition: all 0.3s;
+            animation: fadeUp 1s ease 1.5s both;
+        }
 
-            .nav-links {
-                display: none;
-            }
+        .whatsapp-fab:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 14px 32px rgba(37,211,102,0.55);
+        }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
+        /* ─── SCROLL REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
 
-            .hero p {
-                font-size: 1.1rem;
-            }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .hero-container { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero-visual { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .why-us-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .diff-strip .container { grid-template-columns: 1fr; }
+            .diff-item { border-right: none; border-bottom: 1px solid var(--border); }
+            .diff-item:last-child { border-bottom: none; }
+        }
 
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-            }
-
-            .modal-header {
-                padding: 1.5rem;
-            }
-
-            .modal-body {
-                padding: 1.5rem;
-            }
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/5493564581110" target="_blank" class="whatsapp-fab" title="Escribinos por WhatsApp">💬</a>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#inicio" onclick="closeMobile()">Inicio</a>
+        <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+        <a href="#servicios" onclick="closeMobile()">Servicios</a>
+        <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+        <a href="#contacto" onclick="closeMobile()">Contacto</a>
+    </div>
+
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="header">
         <nav class="nav">
-            <div class="logo">
-                <img src="./imagenes/logo3.jpg" width="100px" style="border-radius: 50px;" alt="Tu Web_com Logo">
-                <h3>Tu web_com</h3>
-            </div>
+            <a href="#inicio" class="logo">
+                <div class="logo-icon">TW</div>
+                <span class="logo-text">Tu Web<span>_com</span></span>
+            </a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
             </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+                <span></span><span></span><span></span>
+            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Desarrollo de Software y Diseño Web</h1>
-            <p>Transformamos tus ideas en soluciones digitales innovadoras. Sistemas personalizados, páginas web modernas y aplicaciones que impulsan tu negocio.</p>
-            <div class="cta-buttons">
-                <a href="#contacto" class="btn btn-primary">Comenzar Proyecto</a>
-                <a href="#servicios" class="btn btn-secondary">Ver Servicios</a>
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <div class="hero-badge-dot"></div>
+                    San Francisco, Córdoba · Argentina
+                </div>
+                <h1>Software a <span class="highlight">tu medida,</span> atención que te acompaña</h1>
+                <p class="hero-desc">
+                    Desarrollamos sistemas personalizados y sitios web que se adaptan exactamente a tu negocio. A diferencia de las grandes empresas, nosotros te conocemos, te escuchamos y estamos con vos en cada paso.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contacto" class="btn btn-gold">Empezar mi proyecto →</a>
+                    <a href="#portfolio" class="btn btn-ghost">Ver trabajos</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-card-title">Proyectos completados</div>
+                    <div class="hero-stat-row">
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">20+</div>
+                            <div class="hero-stat-label">Sistemas entregados</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">100%</div>
+                            <div class="hero-stat-label">Proyectos a medida</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-num">∞</div>
+                            <div class="hero-stat-label">Soporte continuo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-card">
+                    <div class="hero-card-title">Lo que nos diferencia</div>
+                    <div class="feature-list">
+                        <div class="feature-item"><div class="check">✓</div>Atención directa y personalizada</div>
+                        <div class="feature-item"><div class="check">✓</div>Sistemas 100% adaptados a tu rubro</div>
+                        <div class="feature-item"><div class="check">✓</div>Sin intermediarios — hablás con quien lo hace</div>
+                        <div class="feature-item"><div class="check">✓</div>Soporte técnico post-entrega incluido</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Differentiator Strip -->
+    <div class="diff-strip">
+        <div class="container">
+            <div class="diff-item reveal">
+                <div class="diff-icon">🤝</div>
+                <div class="diff-text">
+                    <h4>Trato directo y cercano</h4>
+                    <p>Hablás con quien desarrolla tu sistema. Sin call centers, sin tickets perdidos.</p>
+                </div>
+            </div>
+            <div class="diff-item reveal">
+                <div class="diff-icon">🔧</div>
+                <div class="diff-text">
+                    <h4>Sistemas hechos para vos</h4>
+                    <p>No vendemos plantillas genéricas. Cada sistema nace de entender tu negocio.</p>
+                </div>
+            </div>
+            <div class="diff-item reveal">
+                <div class="diff-icon">📞</div>
+                <div class="diff-text">
+                    <h4>Soporte post-entrega real</h4>
+                    <p>Cuando algo falla, respondemos rápido. Seguimos siendo tu equipo técnico.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Us -->
+    <section class="why-us" id="nosotros">
+        <div class="container">
+            <div class="section-label">¿Por qué elegirnos?</div>
+            <div class="section-title">Lo que las <span>grandes empresas</span><br>no pueden darte</div>
+            <div class="why-us-grid">
+                <div>
+                    <div class="why-card reveal">
+                        <div class="why-card-icon">🎯</div>
+                        <div>
+                            <h4>Adaptación total a tu negocio</h4>
+                            <p>Tu kiosco, zapatería, supermercado o empresa tiene necesidades únicas. Desarrollamos exactamente lo que necesitás, no lo que tenemos disponible.</p>
+                        </div>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-card-icon">⚡</div>
+                        <div>
+                            <h4>Respuesta rápida y sin vueltas</h4>
+                            <p>Un cambio, una duda, un problema técnico. Nos escribís y resolvemos. Sin esperar turnos ni pasar por varios departamentos.</p>
+                        </div>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-card-icon">💡</div>
+                        <div>
+                            <h4>Trabajo colaborativo</h4>
+                            <p>Vos conocés tu negocio, nosotros conocemos la tecnología. Juntos diseñamos la solución ideal, con comunicación fluida en todo el proceso.</p>
+                        </div>
+                    </div>
+                    <div class="why-card reveal">
+                        <div class="why-card-icon">💰</div>
+                        <div>
+                            <h4>Precio justo, calidad real</h4>
+                            <p>Trabajamos sin la estructura de costo de las grandes empresas. Eso se traduce en mejor precio para vos y el mismo nivel de calidad profesional.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-visual reveal">
+                    <div class="why-quote">
+                        <blockquote>
+                            "En las grandes empresas, cuando tenés un problema, <strong>nadie te conoce</strong>. Con nosotros, sabemos cuál es tu sistema, cómo funciona tu negocio y qué necesitás — porque lo <strong>construimos juntos</strong>."
+                        </blockquote>
+                        <div class="why-signature">
+                            <div class="why-avatar">TW</div>
+                            <div class="why-signature-text">
+                                <p>Equipo Tu Web_com</p>
+                                <small>San Francisco, Córdoba</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
     <section class="services" id="servicios">
         <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Servicios</h2>
-                <p>Soluciones tecnológicas completas para hacer crecer tu negocio</p>
+            <div class="services-header">
+                <div>
+                    <div class="section-label">Qué hacemos</div>
+                    <div class="section-title">Nuestros <span>servicios</span></div>
+                </div>
+                <p class="section-desc" style="max-width: 360px;">Soluciones tecnológicas completas, diseñadas con vos para que tu negocio funcione mejor.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card reveal">
+                    <div class="service-card-num">01</div>
                     <div class="service-icon">💻</div>
                     <h3>Desarrollo de Software</h3>
-                    <p>Sistemas de gestión personalizados como nuestro sistema de ventas y control de stock, diseñados específicamente para las necesidades de tu empresa.</p>
+                    <p>Sistemas de gestión personalizados: ventas, stock, caja, proveedores, clientes y reportes. Todo adaptado al rubro de tu empresa.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
+                    <div class="service-card-num">02</div>
                     <div class="service-icon">🌐</div>
                     <h3>Diseño Web Profesional</h3>
-                    <p>Páginas web modernas, responsive y optimizadas para SEO que reflejan la identidad de tu marca y convierten visitantes en clientes.</p>
+                    <p>Páginas web modernas, responsivas y optimizadas para SEO que reflejan tu marca y convierten visitantes en clientes.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
+                    <div class="service-card-num">03</div>
                     <div class="service-icon">📱</div>
                     <h3>Aplicaciones Web</h3>
-                    <p>Aplicaciones web interactivas y fáciles de usar que mejoran la experiencia del usuario y optimizan los procesos de tu negocio.</p>
+                    <p>Aplicaciones interactivas y fáciles de usar que optimizan los procesos internos y la experiencia de tus clientes.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
+                    <div class="service-card-num">04</div>
                     <div class="service-icon">⚙️</div>
                     <h3>Sistemas de Gestión</h3>
-                    <p>Soluciones completas para la administración de inventarios, ventas, clientes y finanzas. Todo integrado en una plataforma eficiente.</p>
+                    <p>Control integral de inventarios, ventas, clientes y finanzas. Todo integrado en una plataforma eficiente y fácil de operar.</p>
                 </div>
-                
-                <div class="service-card">
+                <div class="service-card reveal">
+                    <div class="service-card-num">05</div>
                     <div class="service-icon">🚀</div>
                     <h3>Optimización y Mantenimiento</h3>
-                    <p>Mantenemos tus sistemas actualizados y funcionando al máximo rendimiento con soporte técnico continuo.</p>
+                    <p>Mantenemos tus sistemas actualizados y al máximo rendimiento con soporte técnico continuo y mejoras constantes.</p>
+                </div>
+                <div class="service-card reveal" style="background: var(--gold-glow); border-color: rgba(245,166,35,0.35);">
+                    <div class="service-card-num" style="color: var(--gold);">+</div>
+                    <div class="service-icon" style="background: var(--gold-glow);">💬</div>
+                    <h3>¿Tenés algo diferente en mente?</h3>
+                    <p>Cada negocio es distinto. Contanos tu idea y la analizamos juntos sin compromiso.</p>
+                    <br>
+                    <a href="https://wa.me/5493564581110" target="_blank" class="btn btn-gold" style="font-size: 0.85rem; padding: 10px 20px;">Escribinos →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Portfolio -->
     <section class="portfolio" id="portfolio">
         <div class="container">
-            <div class="section-title">
-                <h2>Nuestros Trabajos</h2>
-                <p>Algunos ejemplos de los proyectos que hemos desarrollado</p>
-            </div>
+            <div class="section-label">Trabajos realizados</div>
+            <div class="section-title">Proyectos que <span>hablan</span> por nosotros</div>
+            <p class="section-desc" style="margin-top: 0.5rem;">Cada uno fue pensado, diseñado y desarrollado a medida para el negocio de nuestros clientes.</p>
+
             <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div style="width: 100%; height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">Sistema de Ventas</div>
-                    <div class="portfolio-overlay">
-                        <h3>Sistema de Gestión Kiosko</h3>
-                        <p>Sistema completo de ventas y control de stock con módulos de caja, inventario, proveedores y reportes financieros.</p>
-                        <button class="btn-view-project" onclick="openModal('project1')">Ver Detalles</button>
+                <div class="portfolio-item reveal" onclick="openModal('project1')">
+                    <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1a3e, #2d1f6e);">
+                        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                            <span style="font-size:3rem;opacity:0.2;">🏪</span>
+                        </div>
+                        <div class="portfolio-thumb-label">Sistema de Gestión Kiosco</div>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-tag">Sistema de Ventas</div>
+                        <h3>Gestión completa para Kiosco</h3>
+                        <p>Sistema de punto de venta con control de stock en tiempo real, caja con múltiples formas de pago y reportes financieros.</p>
+                        <div class="portfolio-footer">
+                            <div class="tech-pills">
+                                <span class="tech-pill">PHP</span>
+                                <span class="tech-pill">MySQL</span>
+                                <span class="tech-pill">Bootstrap</span>
+                            </div>
+                            <button class="btn-details">Ver más →</button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div style="width: 100%; height: 250px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">Sitio Web</div>
-                    <div class="portfolio-overlay">
-                        <h3>Pagina web Estudio juridico</h3>
-                        <p>Desarrollo de sitio web a medida para un estudio jurídico. Se implementó un diseño profesional, secciones informativas clave y un sistema de contacto optimizado para la gestión de clientes</p>
-                        <button class="btn-view-project" onclick="openModal('project2')">Ver Detalles</button>
+
+                <div class="portfolio-item reveal" onclick="openModal('project2')">
+                    <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1f2a1a, #2a3d20);">
+                        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                            <span style="font-size:3rem;opacity:0.2;">⚖️</span>
+                        </div>
+                        <div class="portfolio-thumb-label">Sitio Web Estudio Jurídico</div>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-tag">Diseño Web</div>
+                        <h3>Presencia web para Estudio Jurídico</h3>
+                        <p>Sitio web profesional con diseño a medida, secciones informativas y sistema de contacto optimizado para gestión de clientes.</p>
+                        <div class="portfolio-footer">
+                            <div class="tech-pills">
+                                <span class="tech-pill">WordPress</span>
+                                <span class="tech-pill">JS</span>
+                                <span class="tech-pill">CSS3</span>
+                            </div>
+                            <button class="btn-details">Ver más →</button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div style="width: 100%; height: 250px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">Sistema de control de Stock</div>
-                    <div class="portfolio-overlay">
-                        <h3>Sistema de Gestión Zapateria</h3>
-                        <p>Sistema completo de ventas y control de stock con módulos de caja, inventario, proveedores y reportes financieros.</p>
-                        <button class="btn-view-project" onclick="openModal('project3')">Ver Detalles</button>
+
+                <div class="portfolio-item reveal" onclick="openModal('project3')">
+                    <div class="portfolio-thumb" style="background: linear-gradient(135deg, #0a2030, #0a3045);">
+                        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                            <span style="font-size:3rem;opacity:0.2;">👟</span>
+                        </div>
+                        <div class="portfolio-thumb-label">Sistema de Gestión Zapatería</div>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-tag">Sistema de Control de Stock</div>
+                        <h3>Control integral para Zapatería</h3>
+                        <p>Gestión de stock, clientes, proveedores, ventas y apertura/cierre de caja en una sola plataforma.</p>
+                        <div class="portfolio-footer">
+                            <div class="tech-pills">
+                                <span class="tech-pill">PHP</span>
+                                <span class="tech-pill">MySQL</span>
+                                <span class="tech-pill">Bootstrap</span>
+                            </div>
+                            <button class="btn-details">Ver más →</button>
+                        </div>
                     </div>
                 </div>
-                <div class="portfolio-item">
-                    <div style="width: 100%; height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">Sistema de Ventas Supermercado</div>
-                    <div class="portfolio-overlay">
-                        <h3>Sistema de Gestión Supermercado</h3>
-                        <p>Sistema completo de ventas y control de stock para 3 areas verduleria,polleria y despensa con módulos de caja, inventario, proveedores y reportes financieros.</p>
-                        <button class="btn-view-project" onclick="openModal('project4')">Ver Detalles</button>
+
+                <div class="portfolio-item reveal" onclick="openModal('project4')">
+                    <div class="portfolio-thumb" style="background: linear-gradient(135deg, #201a0a, #3d2e08);">
+                        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                            <span style="font-size:3rem;opacity:0.2;">🛒</span>
+                        </div>
+                        <div class="portfolio-thumb-label">Sistema de Gestión Supermercado</div>
+                    </div>
+                    <div class="portfolio-body">
+                        <div class="portfolio-tag">Sistema Multi-Departamento</div>
+                        <h3>Gestión completa para Supermercado</h3>
+                        <p>Sistema con ventas por departamento (verdulería, pollería, despensa), inventario, caja y reportes financieros detallados.</p>
+                        <div class="portfolio-footer">
+                            <div class="tech-pills">
+                                <span class="tech-pill">PHP</span>
+                                <span class="tech-pill">MySQL</span>
+                                <span class="tech-pill">Bootstrap</span>
+                            </div>
+                            <button class="btn-details">Ver más →</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Project Modals -->
+    <!-- Modals -->
     <div id="project1" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="close" onclick="closeModal('project1')">&times;</span>
-                <h2>Sistema de Gestión Kiosko</h2>
+                <h2>Sistema de Gestión Kiosco</h2>
+                <span class="close" onclick="closeModal('project1')">✕</span>
             </div>
             <div class="modal-body">
                 <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="./imagenes/listado.jpg" alt="Imagen 1"></div>
-                    <div class="swiper-slide"><img src="./imagenes/caja.jpg" alt="Imagen 2"></div>
-                    <div class="swiper-slide"><img src="./imagenes/menu.jpg" alt="Imagen 3"></div>
-                    <div class="swiper-slide"><img src="./imagenes/venta.jpg" alt="Imagen 4"></div>
-                    <div class="swiper-slide"><img src="./imagenes/stock.jpg" alt="Imagen 5"></div>
-                    <div class="swiper-slide"><img src="./imagenes/pedidos.jpg" alt="Imagen 6"></div>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="./imagenes/listado.jpg" alt="Listado"></div>
+                        <div class="swiper-slide"><img src="./imagenes/caja.jpg" alt="Caja"></div>
+                        <div class="swiper-slide"><img src="./imagenes/menu.jpg" alt="Menú"></div>
+                        <div class="swiper-slide"><img src="./imagenes/venta.jpg" alt="Venta"></div>
+                        <div class="swiper-slide"><img src="./imagenes/stock.jpg" alt="Stock"></div>
+                        <div class="swiper-slide"><img src="./imagenes/pedidos.jpg" alt="Pedidos"></div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <!-- Botones de navegación -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <!-- Paginación -->
-                <div class="swiper-pagination"></div>
-                </div>
-
                 <div class="project-details">
-                    <h4>Descripción del Proyecto</h4>
-                    <p>Sistema completo de punto de venta diseñado específicamente para kioscos y pequeños comercios. Incluye gestión de inventario en tiempo real, control de stock, módulo de proveedores, sistema de caja con múltiples formas de pago y generación de reportes detallados.</p>
-                    
-                    <h4>Características Principales</h4>
+                    <h4>Descripción</h4>
+                    <p>Sistema completo de punto de venta diseñado para kioscos y pequeños comercios. Gestión de inventario en tiempo real, control de stock, módulo de proveedores, caja con múltiples formas de pago y reportes detallados.</p>
+                    <h4>Características principales</h4>
                     <p>• Control de stock automático con alertas de productos agotados</p>
                     <p>• Sistema de códigos de barras integrado</p>
                     <p>• Módulo de proveedores con historial de compras</p>
-                    <p>• Reportes de ventas diarias, semanales y mensuales</p>
-                    <p>• Interface intuitiva y fácil de usar</p>
+                    <p>• Reportes de ventas diarios, semanales y mensuales</p>
+                    <p>• Interfaz intuitiva y fácil de usar</p>
                     <p>• Backup automático de datos</p>
-                    
-                    <h4>Tecnologías Utilizadas</h4>
+                    <h4>Tecnologías utilizadas</h4>
                     <div class="tech-stack">
                         <span class="tech-tag">PHP</span>
                         <span class="tech-tag">MySQL</span>
@@ -790,25 +1553,22 @@
     <div id="project2" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="close" onclick="closeModal('project2')">&times;</span>
-                <h2>Pagina web personalizada Estudio juridico </h2>
+                <h2>Sitio Web — Estudio Jurídico</h2>
+                <span class="close" onclick="closeModal('project2')">✕</span>
             </div>
             <div class="modal-body">
-                <img src="./imagenes/abogado10.jpg" alt="E-commerce" class="project-image">
+                <img src="./imagenes/abogado10.jpg" alt="Estudio Jurídico" class="project-image">
                 <div class="project-details">
-                    <h4>Descripción del Proyecto</h4>
-                    <p>Sitio web  personalizado para un estudio juridico. Diseñada para ofrecer una experiencia de informacion y contratación de exelencia.</p>
-                    
-                    <h4>Características Principales</h4>
-                    
-                    <p>• Informacion personal</p>
-                    <p>• Servicios</p>
-                    <p>• Perfil Profesional</p>
-                    <p>• Contacto</p>
-                    <p>• Notificaciones por email automáticas</p>
-                    <p>Url disponible: https://abogadojuangiordano.vercel.app/</p>
-                    
-                    <h4>Tecnologías Utilizadas</h4>
+                    <h4>Descripción</h4>
+                    <p>Sitio web personalizado para un estudio jurídico, diseñado para transmitir profesionalismo y facilitar el contacto con nuevos clientes.</p>
+                    <h4>Características principales</h4>
+                    <p>• Información personal y profesional del abogado</p>
+                    <p>• Sección de servicios y áreas de práctica</p>
+                    <p>• Perfil profesional detallado</p>
+                    <p>• Formulario de contacto con notificaciones automáticas por email</p>
+                    <p>• Diseño responsive y optimizado para SEO</p>
+                    <p>• URL: <a href="https://abogadojuangiordano.vercel.app/" target="_blank" style="color: var(--gold);">abogadojuangiordano.vercel.app</a></p>
+                    <h4>Tecnologías utilizadas</h4>
                     <div class="tech-stack">
                         <span class="tech-tag">WordPress</span>
                         <span class="tech-tag">JavaScript</span>
@@ -823,23 +1583,21 @@
     <div id="project3" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="close" onclick="closeModal('project3')">&times;</span>
-                <h2>Aplicación de Gestión de Zapateria</h2>
+                <h2>Sistema de Gestión Zapatería</h2>
+                <span class="close" onclick="closeModal('project3')">✕</span>
             </div>
             <div class="modal-body">
-                <img src="./imagenes/zapateria.jpg" alt="App de Servicios" class="project-image">
+                <img src="./imagenes/zapateria.jpg" alt="Zapatería" class="project-image">
                 <div class="project-details">
-                    <h4>Descripción del Proyecto</h4>
-                    <p>Aplicación web para la gestión y control de stock, listado de clientes y proveedores, ventas y detalles de ventas, apertura y cierre de caja.</p>
-                    
-                    <h4>Características Principales</h4>
+                    <h4>Descripción</h4>
+                    <p>Aplicación web completa para gestión de zapatería: control de stock, clientes, proveedores, ventas y apertura/cierre de caja integrados en una sola plataforma.</p>
+                    <h4>Características principales</h4>
                     <p>• Base de datos de proveedores con historial completo</p>
-                    <p>• Base de datos de clientes con historial completo</p>
+                    <p>• Base de datos de clientes con historial de compras</p>
                     <p>• Sistema de facturación automática</p>
-                    <p>• Recordatorios automáticos falta de stock</p>
-                    <p>• App móvil responsive</p>
-                    
-                    <h4>Tecnologías Utilizadas</h4>
+                    <p>• Alertas automáticas por falta de stock</p>
+                    <p>• Diseño responsive, funciona en móvil y tablet</p>
+                    <h4>Tecnologías utilizadas</h4>
                     <div class="tech-stack">
                         <span class="tech-tag">PHP</span>
                         <span class="tech-tag">MySQL</span>
@@ -856,38 +1614,31 @@
     <div id="project4" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="close" onclick="closeModal('project4')">&times;</span>
                 <h2>Sistema de Gestión Supermercado</h2>
+                <span class="close" onclick="closeModal('project4')">✕</span>
             </div>
             <div class="modal-body">
-
                 <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="./imagenes/verdu1.jpg" alt="Imagen 1"></div>
-                    <div class="swiper-slide"><img src="./imagenes/verdu2.jpg" alt="Imagen 2"></div>
-                    <div class="swiper-slide"><img src="./imagenes/verdu3.jpg" alt="Imagen 3"></div>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="./imagenes/verdu1.jpg" alt="Verdulería 1"></div>
+                        <div class="swiper-slide"><img src="./imagenes/verdu2.jpg" alt="Verdulería 2"></div>
+                        <div class="swiper-slide"><img src="./imagenes/verdu3.jpg" alt="Verdulería 3"></div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <!-- Botones de navegación -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <!-- Paginación -->
-                <div class="swiper-pagination"></div>
-                </div>
-
-                
                 <div class="project-details">
-                    <h4>Descripción del Proyecto</h4>
-                    <p>Sistema completo de punto de venta diseñado específicamente para supermercado y pequeños comercios. Incluye gestión de inventario en tiempo real, venta dividida por departamento, sistema de caja con múltiples formas de pago y generación de reportes detallados.</p>
-                    
-                    <h4>Características Principales</h4>
+                    <h4>Descripción</h4>
+                    <p>Sistema completo para supermercado con gestión multi-departamento (verdulería, pollería, despensa), inventario en tiempo real, caja con múltiples formas de pago y reportes financieros detallados.</p>
+                    <h4>Características principales</h4>
                     <p>• Control de stock automático con alertas de productos agotados</p>
                     <p>• Sistema de códigos de barras integrado</p>
-                    <p>• Módulo de ventas separados por departamentos con historial de compras</p>
-                    <p>• Reportes de ventas diarias, semanales y mensuales</p>
-                    <p>• Interface intuitiva y fácil de usar</p>
+                    <p>• Módulo de ventas separado por departamentos</p>
+                    <p>• Reportes de ventas diarios, semanales y mensuales</p>
+                    <p>• Interfaz intuitiva y fácil de usar</p>
                     <p>• Backup automático de datos</p>
-                    
-                    <h4>Tecnologías Utilizadas</h4>
+                    <h4>Tecnologías utilizadas</h4>
                     <div class="tech-stack">
                         <span class="tech-tag">PHP</span>
                         <span class="tech-tag">MySQL</span>
@@ -901,69 +1652,70 @@
         </div>
     </div>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section class="contact" id="contacto">
         <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>¡Hablemos de tu proyecto!</h2>
-                    <p style="margin-bottom: 2rem;">Estamos ubicados en San Francisco, Córdoba y listos para ayudarte a digitalizar tu negocio.</p>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <strong>WhatsApp</strong><br>
-                            <a href="https://wa.me/5493564581110" target="_blank" style="color: #00bcd4; text-decoration: none;">+54 9 3564 58-1110</a>
+            <div class="section-label">Contacto</div>
+            <div class="section-title">Contanos tu <span>proyecto</span></div>
+            <div class="contact-grid">
+                <div>
+                    <p class="section-desc" style="margin-bottom: 2.5rem;">Estamos en San Francisco, Córdoba y trabajamos con clientes de toda Argentina. Escribinos sin compromiso y te respondemos rápido.</p>
+
+                    <div class="contact-item reveal">
+                        <div class="contact-icon-wrap">📱</div>
+                        <div class="contact-item-text">
+                            <strong>WhatsApp</strong>
+                            <a href="https://wa.me/5493564581110" target="_blank">+54 9 3564 58-1110</a>
                         </div>
                     </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            <a href="mailto:tuwebcom09@gmail.com" style="color: #00bcd4; text-decoration: none;">tuwebcom09@gmail.com</a>
+                    <div class="contact-item reveal">
+                        <div class="contact-icon-wrap">📧</div>
+                        <div class="contact-item-text">
+                            <strong>Email</strong>
+                            <a href="mailto:tuwebcom09@gmail.com">tuwebcom09@gmail.com</a>
                         </div>
                     </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Ubicación</strong><br>
-                            San Francisco, Córdoba, Argentina
+                    <div class="contact-item reveal">
+                        <div class="contact-icon-wrap">📍</div>
+                        <div class="contact-item-text">
+                            <strong>Ubicación</strong>
+                            <span>San Francisco, Córdoba, Argentina</span>
                         </div>
                     </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📷</div>
-                        <div>
-                            <strong>Instagram</strong><br>
-                            <a href="https://www.instagram.com/tuweb_com" target="_blank" style="color: #00bcd4; text-decoration: none;">@tuweb_com</a>
+                    <div class="contact-item reveal">
+                        <div class="contact-icon-wrap">📷</div>
+                        <div class="contact-item-text">
+                            <strong>Instagram</strong>
+                            <a href="https://www.instagram.com/tuweb_com" target="_blank">@tuweb_com</a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 1.5rem;">Envíanos un mensaje</h3>
+
+                <div class="contact-form-wrap reveal">
+                    <h3>Envianos un mensaje</h3>
+                    <p>Respondemos en menos de 24 horas, generalmente mucho antes.</p>
                     <form action="https://formspree.io/f/xyzpvppj" method="POST" id="contactForm">
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" required>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono">
+                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
                         </div>
                         <div class="form-group">
                             <label for="mensaje">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+                            <textarea id="mensaje" name="mensaje" placeholder="Contanos sobre tu negocio y qué necesitás..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">Enviar Mensaje</button>
+                        <button type="submit" class="btn btn-gold" style="width: 100%; justify-content: center;" id="submitBtn">Enviar mensaje →</button>
                     </form>
-                    <div id="formStatus" class="form-status" style="display: none;"></div>
+                    <div id="formStatus" class="form-status"></div>
                 </div>
             </div>
         </div>
@@ -972,142 +1724,105 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="social-links">
-                <a href="https://www.instagram.com/tuweb_com" target="_blank" class="social-link">📷</a>
-                <a href="https://wa.me/5493564581110" target="_blank" class="social-link">📱</a>
-                <a href="mailto:tuwebcom09@gmail.com" class="social-link">📧</a>
+            <div class="footer-inner">
+                <div>
+                    <div class="footer-copy">
+                        <span>© 2024 Tu Web_com</span> — Desarrollo de Software y Diseño Web<br>
+                        San Francisco, Córdoba, Argentina
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/tuweb_com" target="_blank" class="social-link" title="Instagram">📷</a>
+                    <a href="https://wa.me/5493564581110" target="_blank" class="social-link" title="WhatsApp">💬</a>
+                    <a href="mailto:tuwebcom09@gmail.com" class="social-link" title="Email">📧</a>
+                </div>
             </div>
-            <p>&copy; 2024 Tu Web_com. Todos los derechos reservados.</p>
-            <p>Desarrollo de Software y Diseño Web - San Francisco, Córdoba</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Mobile menu
+        function toggleMobile() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+            document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+        }
+        function closeMobile() {
+            document.getElementById('mobileMenu').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+            anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Header background change on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(26, 35, 126, 0.98)';
-            } else {
-                header.style.background = 'rgba(26, 35, 126, 0.95)';
-            }
-        });
-
-        // Modal functions
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
+        // Modal
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            document.body.style.overflow = 'auto';
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = '';
         }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
+        window.addEventListener('click', e => {
+            document.querySelectorAll('.modal').forEach(m => {
+                if (e.target === m) { m.style.display = 'none'; document.body.style.overflow = ''; }
             });
-        }
+        });
 
-        // Form submission with Formspree
+        // Form
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const formStatus = document.getElementById('formStatus');
-            const form = e.target;
-            
-            // Change button state
-            submitBtn.textContent = 'Enviando...';
-            submitBtn.disabled = true;
-            
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
             try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    formStatus.innerHTML = '¡Mensaje enviado exitosamente! Te contactaremos pronto.';
-                    formStatus.className = 'form-status success';
-                    formStatus.style.display = 'block';
-                    form.reset();
-                } else {
-                    throw new Error('Error en el envío');
-                }
-            } catch (error) {
-                formStatus.innerHTML = 'Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.';
-                formStatus.className = 'form-status error';
-                formStatus.style.display = 'block';
+                const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
+                if (res.ok) {
+                    status.innerHTML = '✓ ¡Mensaje enviado! Te contactaremos pronto.';
+                    status.className = 'form-status success';
+                    status.style.display = 'block';
+                    this.reset();
+                } else throw new Error();
+            } catch {
+                status.innerHTML = '✕ Error al enviar. Intentá nuevamente o escribinos por WhatsApp.';
+                status.className = 'form-status error';
+                status.style.display = 'block';
             }
-            
-            // Reset button
-            submitBtn.textContent = 'Enviar Mensaje';
-            submitBtn.disabled = false;
-            
-            // Hide status message after 5 seconds
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-            }, 5000);
+            btn.textContent = 'Enviar mensaje →';
+            btn.disabled = false;
+            setTimeout(() => { status.style.display = 'none'; }, 6000);
         });
 
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Scroll reveal
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+        // Swiper
+        document.querySelectorAll('.mySwiper').forEach(el => {
+            new Swiper(el, {
+                loop: true,
+                pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
+                navigation: { nextEl: el.querySelector('.swiper-button-next'), prevEl: el.querySelector('.swiper-button-prev') }
             });
-        }, observerOptions);
-
-        // Observe service cards and portfolio items
-        document.querySelectorAll('.service-card, .portfolio-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
         });
-
-        const swiper = new Swiper(".mySwiper", {
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
     </script>
 </body>
 </html>
