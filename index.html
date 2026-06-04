@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./imagenes/logo3.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./imagenes/panaderia/logotuweb.jpeg" type="image/x-icon">
     <title>Tu Web_com — Desarrollo de Software y Diseño Web</title>
     <style>
         :root {
@@ -28,9 +28,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
-
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--bg);
@@ -39,7 +37,6 @@
             line-height: 1.6;
         }
 
-        /* ─── NOISE OVERLAY ─── */
         body::before {
             content: '';
             position: fixed;
@@ -50,12 +47,11 @@
             opacity: 0.4;
         }
 
-        /* ─── SCROLLBAR ─── */
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
 
-        /* ─── HEADER ─── */
+        /* HEADER */
         .header {
             position: fixed;
             top: 0;
@@ -64,14 +60,12 @@
             padding: 1.2rem 0;
             transition: all 0.4s ease;
         }
-
         .header.scrolled {
             background: rgba(12, 12, 18, 0.92);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 0.8rem 0;
         }
-
         .nav {
             display: flex;
             justify-content: space-between;
@@ -80,1090 +74,244 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            width: 80px; height: 80px;
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #0c0c12;
-            font-family: 'Syne', sans-serif;
+            overflow: hidden;
             flex-shrink: 0;
         }
-
-        .logo-text {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text);
-            letter-spacing: -0.02em;
+        .logo-icon img {
+            width: 100%; height: 100%; object-fit: cover;
         }
-
+        .logo-text { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
         .logo-text span { color: var(--gold); }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-            transition: color 0.3s;
-        }
-
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.3s; }
         .nav-links a:hover { color: var(--text); }
+        .nav-cta { background: var(--gold) !important; color: #0c0c12 !important; padding: 0.55rem 1.4rem; border-radius: 8px; font-weight: 600 !important; transition: all 0.3s !important; }
+        .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(245,166,35,0.35) !important; }
 
-        .nav-cta {
-            background: var(--gold) !important;
-            color: #0c0c12 !important;
-            padding: 0.55rem 1.4rem;
-            border-radius: 8px;
-            font-weight: 600 !important;
-            transition: all 0.3s !important;
-        }
-
-        .nav-cta:hover {
-            background: var(--gold-light) !important;
-            transform: translateY(-1px);
-            box-shadow: 0 8px 20px rgba(245,166,35,0.35) !important;
-        }
-
-        /* Hamburger */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background: var(--text);
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: var(--bg);
-            z-index: 999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2.5rem;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--bg); z-index: 999; flex-direction: column;
+            align-items: center; justify-content: center; gap: 2.5rem;
         }
-
         .mobile-menu.open { display: flex; }
-
-        .mobile-menu a {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
+        .mobile-menu a { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 700; color: var(--text); text-decoration: none; transition: color 0.3s; }
         .mobile-menu a:hover { color: var(--gold); }
 
-        /* ─── HERO ─── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: 8rem 2rem 4rem;
-        }
-
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding: 8rem 2rem 4rem; }
         .hero-bg {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(245,166,35,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 80% at 20% 80%, rgba(0,212,232,0.05) 0%, transparent 50%),
-                var(--bg);
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(245,166,35,0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(0,212,232,0.05) 0%, transparent 50%), var(--bg);
         }
-
         .hero-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            position: absolute; inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
             background-size: 60px 60px;
             mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
         }
-
         .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
         }
-
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--gold-glow);
-            border: 1px solid rgba(245,166,35,0.3);
-            color: var(--gold);
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.2s forwards;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--gold-glow); border: 1px solid rgba(245,166,35,0.3);
+            color: var(--gold); padding: 6px 16px; border-radius: 100px;
+            font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+            margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
         }
-
-        .hero-badge-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
-        }
-
+        .hero-badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
         .hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: 3.8rem;
-            font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.4s forwards;
+            font-family: 'Syne', sans-serif; font-size: 3.8rem; font-weight: 800;
+            line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem;
+            opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
         }
+        .hero h1 .highlight { background: linear-gradient(90deg, var(--gold), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 2.5rem; font-weight: 300; opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards; }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards; }
 
-        .hero h1 .highlight {
-            background: linear-gradient(90deg, var(--gold), var(--gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; }
+        .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #0c0c12; box-shadow: 0 8px 24px rgba(245,166,35,0.3); }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(245,166,35,0.45); }
+        .btn-ghost { background: var(--border); color: var(--text); border: 1px solid rgba(255,255,255,0.1); }
+        .btn-ghost:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
-        .hero-desc {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.75;
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.6s forwards;
-        }
+        .hero-visual { display: flex; flex-direction: column; gap: 1rem; opacity: 0; animation: fadeLeft 0.9s ease 0.6s forwards; }
+        .hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; position: relative; overflow: hidden; }
+        .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
+        .hero-card-title { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+        .hero-stat-row { display: flex; gap: 1.5rem; }
+        .hero-stat { flex: 1; }
+        .hero-stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--gold); line-height: 1; }
+        .hero-stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+        .feature-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .feature-item { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--text-muted); }
+        .feature-item .check { width: 20px; height: 20px; background: var(--gold-glow); border: 1px solid rgba(245,166,35,0.4); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; color: var(--gold); }
 
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.8s forwards;
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeLeft { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            color: #0c0c12;
-            box-shadow: 0 8px 24px rgba(245,166,35,0.3);
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 32px rgba(245,166,35,0.45);
-        }
-
-        .btn-ghost {
-            background: var(--border);
-            color: var(--text);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .btn-ghost:hover {
-            background: rgba(255,255,255,0.07);
-            border-color: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Hero visual */
-        .hero-visual {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            opacity: 0;
-            animation: fadeLeft 0.9s ease 0.6s forwards;
-        }
-
-        .hero-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold), transparent);
-        }
-
-        .hero-card-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 1rem;
-        }
-
-        .hero-stat-row {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .hero-stat {
-            flex: 1;
-        }
-
-        .hero-stat-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--gold);
-            line-height: 1;
-        }
-
-        .hero-stat-label {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .feature-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        .feature-item .check {
-            width: 20px;
-            height: 20px;
-            background: var(--gold-glow);
-            border: 1px solid rgba(245,166,35,0.4);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            flex-shrink: 0;
-            color: var(--gold);
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeLeft {
-            from { opacity: 0; transform: translateX(24px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* ─── DIFFERENTIATOR STRIP ─── */
-        .diff-strip {
-            padding: 4rem 0;
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .diff-strip .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-        }
-
-        .diff-item {
-            padding: 1.5rem 2.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1.2rem;
-            border-right: 1px solid var(--border);
-        }
-
+        /* DIFF STRIP */
+        .diff-strip { padding: 4rem 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .diff-strip .container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+        .diff-item { padding: 1.5rem 2.5rem; display: flex; align-items: flex-start; gap: 1.2rem; border-right: 1px solid var(--border); }
         .diff-item:last-child { border-right: none; }
+        .diff-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 4px; }
+        .diff-text h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+        .diff-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
 
-        .diff-icon {
-            font-size: 1.8rem;
-            flex-shrink: 0;
-            margin-top: 4px;
-        }
-
-        .diff-text h4 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 0.4rem;
-        }
-
-        .diff-text p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* ─── SECTION DEFAULTS ─── */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
+        /* SECTION DEFAULTS */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         section { padding: 6rem 0; }
-
-        .section-label {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.6rem;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
+        .section-label { display: inline-block; font-size: 0.75rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+        .section-title { font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text); }
         .section-title span { color: var(--gold); }
+        .section-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 520px; line-height: 1.75; font-weight: 300; }
 
-        .section-desc {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            max-width: 520px;
-            line-height: 1.75;
-            font-weight: 300;
-        }
+        /* WHY US */
+        .why-us { background: var(--bg); position: relative; }
+        .why-us-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 4rem; }
+        .why-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; display: flex; gap: 1.2rem; align-items: flex-start; transition: all 0.3s ease; margin-bottom: 1rem; }
+        .why-card:hover { border-color: rgba(245,166,35,0.3); background: var(--surface2); transform: translateX(6px); }
+        .why-card-icon { width: 48px; height: 48px; background: var(--gold-glow); border: 1px solid rgba(245,166,35,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+        .why-card h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .why-card p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.6; }
+        .why-visual { position: relative; }
+        .why-quote { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: 2.5rem; }
+        .why-quote blockquote { font-size: 1.3rem; font-weight: 300; color: var(--text); line-height: 1.7; font-style: italic; margin-bottom: 1.5rem; }
+        .why-quote blockquote strong { color: var(--gold); font-style: normal; font-weight: 600; }
+        .why-signature { display: flex; align-items: center; gap: 1rem; }
+        .why-avatar { width: 44px; height: 44px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #0c0c12; font-family: 'Syne', sans-serif; }
+        .why-signature-text small { font-size: 0.75rem; color: var(--text-dim); }
+        .why-signature-text p { font-size: 0.9rem; font-weight: 600; }
 
-        /* ─── WHY US ─── */
-        .why-us {
-            background: var(--bg);
-            position: relative;
-        }
-
-        .why-us-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            margin-top: 4rem;
-        }
-
-        .why-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            display: flex;
-            gap: 1.2rem;
-            align-items: flex-start;
-            transition: all 0.3s ease;
-            margin-bottom: 1rem;
-        }
-
-        .why-card:hover {
-            border-color: rgba(245,166,35,0.3);
-            background: var(--surface2);
-            transform: translateX(6px);
-        }
-
-        .why-card-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gold-glow);
-            border: 1px solid rgba(245,166,35,0.3);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .why-card h4 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-        }
-
-        .why-card p {
-            font-size: 0.87rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .why-visual {
-            position: relative;
-        }
-
-        .why-quote {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--gold);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-        }
-
-        .why-quote blockquote {
-            font-size: 1.3rem;
-            font-weight: 300;
-            color: var(--text);
-            line-height: 1.7;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .why-quote blockquote strong {
-            color: var(--gold);
-            font-style: normal;
-            font-weight: 600;
-        }
-
-        .why-signature {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .why-avatar {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            color: #0c0c12;
-            font-family: 'Syne', sans-serif;
-        }
-
-        .why-signature-text small {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-        }
-
-        .why-signature-text p {
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* ─── SERVICES ─── */
-        .services {
-            background: var(--surface);
-            position: relative;
-        }
-
-        .services-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3.5rem;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .service-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: all 0.35s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: default;
-        }
-
-        .service-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 0;
-            background: linear-gradient(to top, var(--gold-glow), transparent);
-            transition: height 0.35s ease;
-        }
-
-        .service-card:hover {
-            border-color: rgba(245,166,35,0.35);
-            transform: translateY(-6px);
-        }
-
+        /* SERVICES */
+        .services { background: var(--surface); position: relative; }
+        .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1.5rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .service-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; transition: all 0.35s ease; position: relative; overflow: hidden; cursor: default; }
+        .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 0; background: linear-gradient(to top, var(--gold-glow), transparent); transition: height 0.35s ease; }
+        .service-card:hover { border-color: rgba(245,166,35,0.35); transform: translateY(-6px); }
         .service-card:hover::after { height: 100%; }
+        .service-card-num { font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+        .service-icon { width: 52px; height: 52px; background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem; transition: all 0.3s; }
+        .service-card:hover .service-icon { background: var(--gold-glow); border-color: rgba(245,166,35,0.4); }
+        .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; position: relative; z-index: 1; }
+        .service-card p { font-size: 0.87rem; color: var(--text-muted); line-height: 1.7; position: relative; z-index: 1; }
 
-        .service-card-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--text-dim);
-            letter-spacing: 0.1em;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-icon {
-            width: 52px;
-            height: 52px;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 1.25rem;
-            transition: all 0.3s;
-        }
-
-        .service-card:hover .service-icon {
-            background: var(--gold-glow);
-            border-color: rgba(245,166,35,0.4);
-        }
-
-        .service-card h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-card p {
-            font-size: 0.87rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ─── PORTFOLIO ─── */
+        /* PORTFOLIO */
         .portfolio { background: var(--bg); }
+        .portfolio-header { margin-bottom: 3.5rem; }
 
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 3.5rem;
+        /* Filter tabs */
+        .filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .filter-tab {
+            padding: 7px 18px; border-radius: 100px; font-size: 0.82rem; font-weight: 500;
+            border: 1px solid var(--border); background: transparent; color: var(--text-muted);
+            cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif;
         }
+        .filter-tab:hover { border-color: rgba(245,166,35,0.4); color: var(--text); }
+        .filter-tab.active { background: var(--gold-glow); border-color: rgba(245,166,35,0.5); color: var(--gold); }
 
-        .portfolio-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: all 0.35s ease;
-            cursor: pointer;
-        }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 0; }
+        .portfolio-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.35s ease; cursor: pointer; }
+        .portfolio-item.hidden { display: none; }
+        .portfolio-item:hover { border-color: rgba(245,166,35,0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .portfolio-thumb { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .portfolio-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .portfolio-item:hover .portfolio-thumb img { transform: scale(1.04); }
+        .portfolio-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); }
+        .portfolio-thumb-label { position: absolute; bottom: 1rem; left: 1rem; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: white; z-index: 1; }
+        .portfolio-body { padding: 1.5rem; }
+        .portfolio-tag { font-size: 0.72rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+        .portfolio-body h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .portfolio-body p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+        .portfolio-footer { display: flex; justify-content: space-between; align-items: center; }
+        .tech-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tech-pill { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 3px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 500; }
+        .btn-details { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+        .btn-details:hover { border-color: var(--gold); color: var(--gold); }
 
-        .portfolio-item:hover {
-            border-color: rgba(245,166,35,0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
+        /* URL badge */
+        .url-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,212,232,0.08); border: 1px solid rgba(0,212,232,0.25); color: #00d4e8; padding: 3px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 500; margin-bottom: 0.75rem; text-decoration: none; transition: all 0.25s; }
+        .url-badge:hover { background: rgba(0,212,232,0.15); }
 
-        .portfolio-thumb {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .portfolio-thumb-label {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: white;
-            text-align: center;
-            padding: 0 1rem;
-            z-index: 1;
-        }
-
-        .portfolio-body {
-            padding: 1.5rem;
-        }
-
-        .portfolio-tag {
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-body h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-body p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .tech-pills {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .tech-pill {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 3px 10px;
-            border-radius: 100px;
-            font-size: 0.72rem;
-            font-weight: 500;
-        }
-
-        .btn-details {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'DM Sans', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-        }
-
-        .btn-details:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-
-        /* ─── MODAL ─── */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(6px);
-            animation: fadeIn 0.25s ease;
-            padding: 1rem;
-            overflow-y: auto;
-        }
-
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 2000; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(6px); animation: fadeIn 0.25s ease; padding: 1rem; overflow-y: auto; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .modal-content {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            width: 100%;
-            max-width: 780px;
-            margin: 2rem auto;
-            overflow: hidden;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-header {
-            padding: 2rem;
-            background: var(--surface2);
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .modal-header h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .close {
-            width: 36px;
-            height: 36px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            font-weight: 300;
-            transition: all 0.3s;
-            flex-shrink: 0;
-        }
-
+        .modal-content { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); width: 100%; max-width: 800px; margin: 2rem auto; overflow: hidden; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-header { padding: 2rem; background: var(--surface2); border-bottom: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: space-between; }
+        .modal-header h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; }
+        .close { width: 36px; height: 36px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); font-size: 1.2rem; font-weight: 300; transition: all 0.3s; flex-shrink: 0; }
         .close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
-
         .modal-body { padding: 2rem; }
 
         .swiper { border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
         .swiper img { width: 100%; height: 280px; object-fit: cover; }
         .swiper-button-next, .swiper-button-prev { color: var(--gold) !important; }
         .swiper-pagination-bullet-active { background: var(--gold) !important; }
-
         .project-image { width: 100%; height: 260px; object-fit: cover; border-radius: var(--radius); margin-bottom: 1.5rem; }
 
-        .project-details h4 {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gold);
-            margin-bottom: 0.75rem;
-            margin-top: 1.25rem;
-        }
-
-        .project-details p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            margin-bottom: 0.4rem;
-        }
-
+        .project-details h4 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.75rem; margin-top: 1.25rem; }
+        .project-details p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.4rem; }
         .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+        .tech-tag { background: var(--gold-glow); border: 1px solid rgba(245,166,35,0.3); color: var(--gold); padding: 4px 12px; border-radius: 100px; font-size: 0.8rem; font-weight: 500; }
+        .modal-url { display: inline-flex; align-items: center; gap: 6px; color: #00d4e8; font-size: 0.88rem; text-decoration: none; border-bottom: 1px solid rgba(0,212,232,0.3); padding-bottom: 2px; }
+        .modal-url:hover { border-color: #00d4e8; }
 
-        .tech-tag {
-            background: var(--gold-glow);
-            border: 1px solid rgba(245,166,35,0.3);
-            color: var(--gold);
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        /* ─── CONTACT ─── */
-        .contact {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 5rem;
-            align-items: start;
-            margin-top: 4rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon-wrap {
-            width: 44px;
-            height: 44px;
-            background: var(--gold-glow);
-            border: 1px solid rgba(245,166,35,0.3);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .contact-item-text strong {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 3px;
-        }
-
-        .contact-item-text a, .contact-item-text span {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
+        /* CONTACT */
+        .contact { background: var(--surface); border-top: 1px solid var(--border); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; margin-top: 4rem; }
+        .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .contact-icon-wrap { width: 44px; height: 44px; background: var(--gold-glow); border: 1px solid rgba(245,166,35,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .contact-item-text strong { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+        .contact-item-text a, .contact-item-text span { color: var(--text); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
         .contact-item-text a:hover { color: var(--gold); }
-
-        .contact-form-wrap {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem;
-        }
-
-        .contact-form-wrap h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-form-wrap p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
+        .contact-form-wrap { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; }
+        .contact-form-wrap h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .contact-form-wrap p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; }
         .form-group { margin-bottom: 1.25rem; }
-
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text);
-            font-size: 0.95rem;
-            font-family: 'DM Sans', sans-serif;
-            transition: border-color 0.3s;
-            outline: none;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder { color: var(--text-dim); }
-
-        .form-group input:focus,
-        .form-group textarea:focus { border-color: rgba(245,166,35,0.5); }
-
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 0.95rem; font-family: 'DM Sans', sans-serif; transition: border-color 0.3s; outline: none; }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); }
+        .form-group input:focus, .form-group textarea:focus { border-color: rgba(245,166,35,0.5); }
         .form-group textarea { height: 110px; resize: vertical; }
-
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .form-status { margin-top: 1rem; padding: 12px 16px; border-radius: 10px; font-size: 0.87rem; font-weight: 500; display: none; }
+        .form-status.success { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #4ade80; }
+        .form-status.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #f87171; }
 
-        .form-status {
-            margin-top: 1rem;
-            padding: 12px 16px;
-            border-radius: 10px;
-            font-size: 0.87rem;
-            font-weight: 500;
-            display: none;
-        }
-
-        .form-status.success {
-            background: rgba(34,197,94,0.1);
-            border: 1px solid rgba(34,197,94,0.3);
-            color: #4ade80;
-        }
-
-        .form-status.error {
-            background: rgba(239,68,68,0.1);
-            border: 1px solid rgba(239,68,68,0.3);
-            color: #f87171;
-        }
-
-        /* ─── FOOTER ─── */
-        .footer {
-            background: var(--bg);
-            border-top: 1px solid var(--border);
-            padding: 3rem 0;
-        }
-
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .footer-copy {
-            font-size: 0.83rem;
-            color: var(--text-dim);
-        }
-
+        /* FOOTER */
+        .footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3rem 0; }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+        .footer-copy { font-size: 0.83rem; color: var(--text-dim); }
         .footer-copy span { color: var(--text-muted); }
-
         .social-links { display: flex; gap: 0.75rem; }
+        .social-link { width: 38px; height: 38px; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; transition: all 0.3s; }
+        .social-link:hover { border-color: rgba(245,166,35,0.4); background: var(--gold-glow); transform: translateY(-2px); }
 
-        .social-link {
-            width: 38px;
-            height: 38px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
+        /* WHATSAPP FAB */
+        .whatsapp-fab { position: fixed; bottom: 2rem; right: 2rem; z-index: 998; width: 56px; height: 56px; background: #25d366; border-radius: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.6rem; box-shadow: 0 8px 24px rgba(37,211,102,0.4); transition: all 0.3s; animation: fadeUp 1s ease 1.5s both; }
+        .whatsapp-fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 14px 32px rgba(37,211,102,0.55); }
 
-        .social-link:hover {
-            border-color: rgba(245,166,35,0.4);
-            background: var(--gold-glow);
-            transform: translateY(-2px);
-        }
+        /* SCROLL REVEAL */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* ─── WHATSAPP FAB ─── */
-        .whatsapp-fab {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 998;
-            width: 56px;
-            height: 56px;
-            background: #25d366;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 1.6rem;
-            box-shadow: 0 8px 24px rgba(37,211,102,0.4);
-            transition: all 0.3s;
-            animation: fadeUp 1s ease 1.5s both;
-        }
-
-        .whatsapp-fab:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 14px 32px rgba(37,211,102,0.55);
-        }
-
-        /* ─── SCROLL REVEAL ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.65s ease, transform 0.65s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ─── RESPONSIVE ─── */
+        /* RESPONSIVE */
         @media (max-width: 900px) {
             .hero-container { grid-template-columns: 1fr; gap: 2.5rem; }
             .hero-visual { display: none; }
@@ -1176,7 +324,6 @@
             .diff-item { border-right: none; border-bottom: 1px solid var(--border); }
             .diff-item:last-child { border-bottom: none; }
         }
-
         @media (max-width: 640px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
@@ -1190,639 +337,1061 @@
 </head>
 <body>
 
-    <!-- WhatsApp FAB -->
-    <a href="https://wa.me/5493564581110" target="_blank" class="whatsapp-fab" title="Escribinos por WhatsApp">💬</a>
+<a href="https://wa.me/5493564581110" target="_blank" class="whatsapp-fab" title="Escribinos por WhatsApp">💬</a>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#inicio" onclick="closeMobile()">Inicio</a>
-        <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
-        <a href="#servicios" onclick="closeMobile()">Servicios</a>
-        <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
-        <a href="#contacto" onclick="closeMobile()">Contacto</a>
-    </div>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#inicio" onclick="closeMobile()">Inicio</a>
+    <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
+    <a href="#servicios" onclick="closeMobile()">Servicios</a>
+    <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+    <a href="#contacto" onclick="closeMobile()">Contacto</a>
+</div>
 
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav">
-            <a href="#inicio" class="logo">
-                <div class="logo-icon">TW</div>
-                <span class="logo-text">Tu Web<span>_com</span></span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger" onclick="toggleMobile()">
-                <span></span><span></span><span></span>
+<header class="header" id="header">
+    <nav class="nav">
+        <a href="#inicio" class="logo">
+            <div class="logo-icon"><img src="./imagenes/panaderia/logotuweb.jpeg" alt="Tu Web_com"></div>
+            <span class="logo-text">Tu Web<span>_com</span></span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-container">
+        <div class="hero-left">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                Córdoba · Argentina
             </div>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero" id="inicio">
-        <div class="hero-bg"></div>
-        <div class="hero-grid"></div>
-        <div class="hero-container">
-            <div class="hero-left">
-                <div class="hero-badge">
-                    <div class="hero-badge-dot"></div>
-                    Córdoba · Argentina
-                </div>
-                <h1>Software a <span class="highlight">tu medida,</span> atención que te acompaña</h1>
-                <p class="hero-desc">
-                    Desarrollamos sistemas personalizados y sitios web que se adaptan exactamente a tu negocio. A diferencia de las grandes empresas, nosotros te conocemos, te escuchamos y estamos con vos en cada paso.
-                </p>
-                <div class="hero-actions">
-                    <a href="#contacto" class="btn btn-gold">Empezar mi proyecto →</a>
-                    <a href="#portfolio" class="btn btn-ghost">Ver trabajos</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-card">
-                    <div class="hero-card-title">Proyectos completados</div>
-                    <div class="hero-stat-row">
-                        <div class="hero-stat">
-                            <div class="hero-stat-num">20+</div>
-                            <div class="hero-stat-label">Sistemas entregados</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-num">100%</div>
-                            <div class="hero-stat-label">Proyectos a medida</div>
-                        </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-num">∞</div>
-                            <div class="hero-stat-label">Soporte continuo</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-card">
-                    <div class="hero-card-title">Lo que nos diferencia</div>
-                    <div class="feature-list">
-                        <div class="feature-item"><div class="check">✓</div>Atención directa y personalizada</div>
-                        <div class="feature-item"><div class="check">✓</div>Sistemas 100% adaptados a tu rubro</div>
-                        <div class="feature-item"><div class="check">✓</div>Sin intermediarios — hablás con quien lo hace</div>
-                        <div class="feature-item"><div class="check">✓</div>Soporte técnico post-entrega incluido</div>
-                    </div>
-                </div>
+            <h1>Software a <span class="highlight">tu medida,</span> atención que te acompaña</h1>
+            <p class="hero-desc">Desarrollamos sistemas personalizados y sitios web que se adaptan exactamente a tu negocio. A diferencia de las grandes empresas, nosotros te conocemos, te escuchamos y estamos con vos en cada paso.</p>
+            <div class="hero-actions">
+                <a href="#contacto" class="btn btn-gold">Empezar mi proyecto →</a>
+                <a href="#portfolio" class="btn btn-ghost">Ver trabajos</a>
             </div>
         </div>
-    </section>
-
-    <!-- Differentiator Strip -->
-    <div class="diff-strip">
-        <div class="container">
-            <div class="diff-item reveal">
-                <div class="diff-icon">🤝</div>
-                <div class="diff-text">
-                    <h4>Trato directo y cercano</h4>
-                    <p>Hablás con quien desarrolla tu sistema. Sin call centers, sin tickets perdidos.</p>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-card-title">Proyectos completados</div>
+                <div class="hero-stat-row">
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">10+</div>
+                        <div class="hero-stat-label">Sistemas entregados</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">100%</div>
+                        <div class="hero-stat-label">Proyectos a medida</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-num">∞</div>
+                        <div class="hero-stat-label">Soporte continuo</div>
+                    </div>
                 </div>
             </div>
-            <div class="diff-item reveal">
-                <div class="diff-icon">🔧</div>
-                <div class="diff-text">
-                    <h4>Sistemas hechos para vos</h4>
-                    <p>No vendemos plantillas genéricas. Cada sistema nace de entender tu negocio.</p>
-                </div>
-            </div>
-            <div class="diff-item reveal">
-                <div class="diff-icon">📞</div>
-                <div class="diff-text">
-                    <h4>Soporte post-entrega real</h4>
-                    <p>Cuando algo falla, respondemos rápido. Seguimos siendo tu equipo técnico.</p>
+            <div class="hero-card">
+                <div class="hero-card-title">Lo que nos diferencia</div>
+                <div class="feature-list">
+                    <div class="feature-item"><div class="check">✓</div>Atención directa y personalizada</div>
+                    <div class="feature-item"><div class="check">✓</div>Sistemas 100% adaptados a tu rubro</div>
+                    <div class="feature-item"><div class="check">✓</div>Sin intermediarios — hablás con quien lo hace</div>
+                    <div class="feature-item"><div class="check">✓</div>Soporte técnico post-entrega incluido</div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Why Us -->
-    <section class="why-us" id="nosotros">
-        <div class="container">
-            <div class="section-label">¿Por qué elegirnos?</div>
-            <div class="section-title">Lo que las <span>grandes empresas</span><br>no pueden darte</div>
-            <div class="why-us-grid">
-                <div>
-                    <div class="why-card reveal">
-                        <div class="why-card-icon">🎯</div>
-                        <div>
-                            <h4>Adaptación total a tu negocio</h4>
-                            <p>Tu kiosco, zapatería, supermercado o empresa tiene necesidades únicas. Desarrollamos exactamente lo que necesitás, no lo que tenemos disponible.</p>
-                        </div>
-                    </div>
-                    <div class="why-card reveal">
-                        <div class="why-card-icon">⚡</div>
-                        <div>
-                            <h4>Respuesta rápida y sin vueltas</h4>
-                            <p>Un cambio, una duda, un problema técnico. Nos escribís y resolvemos. Sin esperar turnos ni pasar por varios departamentos.</p>
-                        </div>
-                    </div>
-                    <div class="why-card reveal">
-                        <div class="why-card-icon">💡</div>
-                        <div>
-                            <h4>Trabajo colaborativo</h4>
-                            <p>Vos conocés tu negocio, nosotros conocemos la tecnología. Juntos diseñamos la solución ideal, con comunicación fluida en todo el proceso.</p>
-                        </div>
-                    </div>
-                    <div class="why-card reveal">
-                        <div class="why-card-icon">💰</div>
-                        <div>
-                            <h4>Precio justo, calidad real</h4>
-                            <p>Trabajamos sin la estructura de costo de las grandes empresas. Eso se traduce en mejor precio para vos y el mismo nivel de calidad profesional.</p>
-                        </div>
+<!-- Diff strip -->
+<div class="diff-strip">
+    <div class="container">
+        <div class="diff-item reveal">
+            <div class="diff-icon">🤝</div>
+            <div class="diff-text">
+                <h4>Trato directo y cercano</h4>
+                <p>Hablás con quien desarrolla tu sistema. Sin call centers, sin tickets perdidos.</p>
+            </div>
+        </div>
+        <div class="diff-item reveal">
+            <div class="diff-icon">🔧</div>
+            <div class="diff-text">
+                <h4>Sistemas hechos para vos</h4>
+                <p>No vendemos plantillas genéricas. Cada sistema nace de entender tu negocio.</p>
+            </div>
+        </div>
+        <div class="diff-item reveal">
+            <div class="diff-icon">📞</div>
+            <div class="diff-text">
+                <h4>Soporte post-entrega real</h4>
+                <p>Cuando algo falla, respondemos rápido. Seguimos siendo tu equipo técnico.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Why Us -->
+<section class="why-us" id="nosotros">
+    <div class="container">
+        <div class="section-label">¿Por qué elegirnos?</div>
+        <div class="section-title">Lo que las <span>grandes empresas</span><br>no pueden darte</div>
+        <div class="why-us-grid">
+            <div>
+                <div class="why-card reveal">
+                    <div class="why-card-icon">🎯</div>
+                    <div>
+                        <h4>Adaptación total a tu negocio</h4>
+                        <p>Tu panadería, zapatería, supermercado, sodería o empresa tiene necesidades únicas. Desarrollamos exactamente lo que necesitás, no lo que tenemos disponible.</p>
                     </div>
                 </div>
-                <div class="why-visual reveal">
-                    <div class="why-quote">
-                        <blockquote>
-                            "En las grandes empresas, cuando tenés un problema, <strong>nadie te conoce</strong>. Con nosotros, sabemos cuál es tu sistema, cómo funciona tu negocio y qué necesitás — porque lo <strong>construimos juntos</strong>."
-                        </blockquote>
-                        <div class="why-signature">
-                            <div class="why-avatar">TW</div>
-                            <div class="why-signature-text">
-                                <p>Equipo Tu Web_com</p>
-                                <small> Córdoba, Argentina</small>
-                            </div>
+                <div class="why-card reveal">
+                    <div class="why-card-icon">⚡</div>
+                    <div>
+                        <h4>Respuesta rápida y sin vueltas</h4>
+                        <p>Un cambio, una duda, un problema técnico. Nos escribís y resolvemos. Sin esperar turnos ni pasar por varios departamentos.</p>
+                    </div>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-card-icon">💡</div>
+                    <div>
+                        <h4>Trabajo colaborativo</h4>
+                        <p>Vos conocés tu negocio, nosotros conocemos la tecnología. Juntos diseñamos la solución ideal, con comunicación fluida en todo el proceso.</p>
+                    </div>
+                </div>
+                <div class="why-card reveal">
+                    <div class="why-card-icon">💰</div>
+                    <div>
+                        <h4>Precio justo, calidad real</h4>
+                        <p>Trabajamos sin la estructura de costo de las grandes empresas. Eso se traduce en mejor precio para vos y el mismo nivel de calidad profesional.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="why-visual reveal">
+                <div class="why-quote">
+                    <blockquote>"En las grandes empresas, cuando tenés un problema, <strong>nadie te conoce</strong>. Con nosotros, sabemos cuál es tu sistema, cómo funciona tu negocio y qué necesitás — porque lo <strong>construimos juntos</strong>."</blockquote>
+                    <div class="why-signature">
+                        <div class="why-avatar">TW</div>
+                        <div class="why-signature-text">
+                            <p>Equipo Tu Web_com</p>
+                            <small>Córdoba, Argentina</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Services -->
-    <section class="services" id="servicios">
-        <div class="container">
-            <div class="services-header">
-                <div>
-                    <div class="section-label">Qué hacemos</div>
-                    <div class="section-title">Nuestros <span>servicios</span></div>
-                </div>
-                <p class="section-desc" style="max-width: 360px;">Soluciones tecnológicas completas, diseñadas con vos para que tu negocio funcione mejor.</p>
+<!-- Services -->
+<section class="services" id="servicios">
+    <div class="container">
+        <div class="services-header">
+            <div>
+                <div class="section-label">Qué hacemos</div>
+                <div class="section-title">Nuestros <span>servicios</span></div>
             </div>
-            <div class="services-grid">
-                <div class="service-card reveal">
-                    <div class="service-card-num">01</div>
-                    <div class="service-icon">💻</div>
-                    <h3>Desarrollo de Software</h3>
-                    <p>Sistemas de gestión personalizados: ventas, stock, caja, proveedores, clientes y reportes. Todo adaptado al rubro de tu empresa.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-card-num">02</div>
-                    <div class="service-icon">🌐</div>
-                    <h3>Diseño Web Profesional</h3>
-                    <p>Páginas web modernas, responsivas y optimizadas para SEO que reflejan tu marca y convierten visitantes en clientes.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-card-num">03</div>
-                    <div class="service-icon">📱</div>
-                    <h3>Aplicaciones Web</h3>
-                    <p>Aplicaciones interactivas y fáciles de usar que optimizan los procesos internos y la experiencia de tus clientes.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-card-num">04</div>
-                    <div class="service-icon">⚙️</div>
-                    <h3>Sistemas de Gestión</h3>
-                    <p>Control integral de inventarios, ventas, clientes y finanzas. Todo integrado en una plataforma eficiente y fácil de operar.</p>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-card-num">05</div>
-                    <div class="service-icon">🚀</div>
-                    <h3>Optimización y Mantenimiento</h3>
-                    <p>Mantenemos tus sistemas actualizados y al máximo rendimiento con soporte técnico continuo y mejoras constantes.</p>
-                </div>
-                <div class="service-card reveal" style="background: var(--gold-glow); border-color: rgba(245,166,35,0.35);">
-                    <div class="service-card-num" style="color: var(--gold);">+</div>
-                    <div class="service-icon" style="background: var(--gold-glow);">💬</div>
-                    <h3>¿Tenés algo diferente en mente?</h3>
-                    <p>Cada negocio es distinto. Contanos tu idea y la analizamos juntos sin compromiso.</p>
-                    <br>
-                    <a href="https://wa.me/5493564581110" target="_blank" class="btn btn-gold" style="font-size: 0.85rem; padding: 10px 20px;">Escribinos →</a>
-                </div>
+            <p class="section-desc" style="max-width: 360px;">Soluciones tecnológicas completas, diseñadas con vos para que tu negocio funcione mejor.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-card-num">01</div>
+                <div class="service-icon">💻</div>
+                <h3>Desarrollo de Software</h3>
+                <p>Sistemas de gestión personalizados: ventas, stock, caja, proveedores, clientes y reportes. Todo adaptado al rubro de tu empresa.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-card-num">02</div>
+                <div class="service-icon">🌐</div>
+                <h3>Diseño Web Profesional</h3>
+                <p>Páginas web modernas, responsivas y optimizadas para SEO que reflejan tu marca y convierten visitantes en clientes.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-card-num">03</div>
+                <div class="service-icon">📱</div>
+                <h3>Aplicaciones Web</h3>
+                <p>Aplicaciones interactivas y fáciles de usar que optimizan los procesos internos y la experiencia de tus clientes.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-card-num">04</div>
+                <div class="service-icon">⚙️</div>
+                <h3>Sistemas de Gestión</h3>
+                <p>Control integral de inventarios, ventas, clientes y finanzas. Todo integrado en una plataforma eficiente y fácil de operar.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-card-num">05</div>
+                <div class="service-icon">🧾</div>
+                <h3>Facturación Electrónica</h3>
+                <p>Integración con AFIP para emisión de facturas electrónicas A, B y C directamente desde el sistema de gestión de tu negocio.</p>
+            </div>
+            <div class="service-card reveal" style="background: var(--gold-glow); border-color: rgba(245,166,35,0.35);">
+                <div class="service-card-num" style="color: var(--gold);">+</div>
+                <div class="service-icon" style="background: var(--gold-glow);">💬</div>
+                <h3>¿Tenés algo diferente en mente?</h3>
+                <p>Cada negocio es distinto. Contanos tu idea y la analizamos juntos sin compromiso.</p>
+                <br>
+                <a href="https://wa.me/5493564581110" target="_blank" class="btn btn-gold" style="font-size: 0.85rem; padding: 10px 20px; position: relative; z-index: 2;">Escribinos →</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Portfolio -->
-    <section class="portfolio" id="portfolio">
-        <div class="container">
+<!-- Portfolio -->
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <div class="portfolio-header">
             <div class="section-label">Trabajos realizados</div>
             <div class="section-title">Proyectos que <span>hablan</span> por nosotros</div>
             <p class="section-desc" style="margin-top: 0.5rem;">Cada uno fue pensado, diseñado y desarrollado a medida para el negocio de nuestros clientes.</p>
-
-            <div class="portfolio-grid">
-                <div class="portfolio-item reveal" onclick="openModal('project1')">
-                    <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1a3e, #2d1f6e);">
-                        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-                            <span style="font-size:3rem;opacity:0.2;">🏪</span>
-                        </div>
-                        <div class="portfolio-thumb-label">Sistema de Gestión Kiosco</div>
-                    </div>
-                    <div class="portfolio-body">
-                        <div class="portfolio-tag">Sistema de Ventas</div>
-                        <h3>Gestión completa para Kiosco</h3>
-                        <p>Sistema de punto de venta con control de stock en tiempo real, caja con múltiples formas de pago y reportes financieros.</p>
-                        <div class="portfolio-footer">
-                            <div class="tech-pills">
-                                <span class="tech-pill">PHP</span>
-                                <span class="tech-pill">MySQL</span>
-                                <span class="tech-pill">Bootstrap</span>
-                            </div>
-                            <button class="btn-details">Ver más →</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item reveal" onclick="openModal('project2')">
-                    <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1f2a1a, #2a3d20);">
-                        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-                            <span style="font-size:3rem;opacity:0.2;">⚖️</span>
-                        </div>
-                        <div class="portfolio-thumb-label">Sitio Web Estudio Jurídico</div>
-                    </div>
-                    <div class="portfolio-body">
-                        <div class="portfolio-tag">Diseño Web</div>
-                        <h3>Presencia web para Estudio Jurídico</h3>
-                        <p>Sitio web profesional con diseño a medida, secciones informativas y sistema de contacto optimizado para gestión de clientes.</p>
-                        <div class="portfolio-footer">
-                            <div class="tech-pills">
-                                <span class="tech-pill">WordPress</span>
-                                <span class="tech-pill">JS</span>
-                                <span class="tech-pill">CSS3</span>
-                            </div>
-                            <button class="btn-details">Ver más →</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item reveal" onclick="openModal('project3')">
-                    <div class="portfolio-thumb" style="background: linear-gradient(135deg, #0a2030, #0a3045);">
-                        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-                            <span style="font-size:3rem;opacity:0.2;">👟</span>
-                        </div>
-                        <div class="portfolio-thumb-label">Sistema de Gestión Zapatería</div>
-                    </div>
-                    <div class="portfolio-body">
-                        <div class="portfolio-tag">Sistema de Control de Stock</div>
-                        <h3>Control integral para Zapatería</h3>
-                        <p>Gestión de stock, clientes, proveedores, ventas y apertura/cierre de caja en una sola plataforma.</p>
-                        <div class="portfolio-footer">
-                            <div class="tech-pills">
-                                <span class="tech-pill">PHP</span>
-                                <span class="tech-pill">MySQL</span>
-                                <span class="tech-pill">Bootstrap</span>
-                            </div>
-                            <button class="btn-details">Ver más →</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item reveal" onclick="openModal('project4')">
-                    <div class="portfolio-thumb" style="background: linear-gradient(135deg, #201a0a, #3d2e08);">
-                        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-                            <span style="font-size:3rem;opacity:0.2;">🛒</span>
-                        </div>
-                        <div class="portfolio-thumb-label">Sistema de Gestión Supermercado</div>
-                    </div>
-                    <div class="portfolio-body">
-                        <div class="portfolio-tag">Sistema Multi-Departamento</div>
-                        <h3>Gestión completa para Supermercado</h3>
-                        <p>Sistema con ventas por departamento (verdulería, pollería, despensa), inventario, caja y reportes financieros detallados.</p>
-                        <div class="portfolio-footer">
-                            <div class="tech-pills">
-                                <span class="tech-pill">PHP</span>
-                                <span class="tech-pill">MySQL</span>
-                                <span class="tech-pill">Bootstrap</span>
-                            </div>
-                            <button class="btn-details">Ver más →</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterPortfolio('all', this)">Todos (10)</button>
+                <button class="filter-tab" onclick="filterPortfolio('sistema', this)">Sistemas de gestión</button>
+                <button class="filter-tab" onclick="filterPortfolio('web', this)">Diseño web</button>
+                <button class="filter-tab" onclick="filterPortfolio('ecommerce', this)">E-commerce</button>
             </div>
         </div>
-    </section>
 
-    <!-- Modals -->
-    <div id="project1" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Sistema de Gestión Kiosco</h2>
-                <span class="close" onclick="closeModal('project1')">✕</span>
-            </div>
-            <div class="modal-body">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="./imagenes/listado.jpg" alt="Listado"></div>
-                        <div class="swiper-slide"><img src="./imagenes/caja.jpg" alt="Caja"></div>
-                        <div class="swiper-slide"><img src="./imagenes/menu.jpg" alt="Menú"></div>
-                        <div class="swiper-slide"><img src="./imagenes/venta.jpg" alt="Venta"></div>
-                        <div class="swiper-slide"><img src="./imagenes/stock.jpg" alt="Stock"></div>
-                        <div class="swiper-slide"><img src="./imagenes/pedidos.jpg" alt="Pedidos"></div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
+        <div class="portfolio-grid" id="portfolioGrid">
+
+            <!-- 1. Panadería El Maná -->
+            <div class="portfolio-item reveal" data-cat="sistema" onclick="openModal('project-pan')">
+                <div class="portfolio-thumb">
+                    <img src="./imagenes/panaderia/WhatsApp Image 2026-06-04 at 12.46.13.jpeg" alt="Panadería El Maná">
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Panadería El Maná</div>
                 </div>
-                <div class="project-details">
-                    <h4>Descripción</h4>
-                    <p>Sistema completo de punto de venta diseñado para kioscos y pequeños comercios. Gestión de inventario en tiempo real, control de stock, módulo de proveedores, caja con múltiples formas de pago y reportes detallados.</p>
-                    <h4>Características principales</h4>
-                    <p>• Control de stock automático con alertas de productos agotados</p>
-                    <p>• Sistema de códigos de barras integrado</p>
-                    <p>• Módulo de proveedores con historial de compras</p>
-                    <p>• Reportes de ventas diarios, semanales y mensuales</p>
-                    <p>• Interfaz intuitiva y fácil de usar</p>
-                    <p>• Backup automático de datos</p>
-                    <h4>Tecnologías utilizadas</h4>
-                    <div class="tech-stack">
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
+                <div class="portfolio-body">
+                    <a href="https://www.panaderiaelmana.com.ar" target="_blank" class="url-badge" onclick="event.stopPropagation()">🔗 panaderiaelmana.com.ar</a>
+                    <div class="portfolio-tag">Sistema de Gestión + Facturación Electrónica</div>
+                    <h3>Gestión completa para panadería</h3>
+                    <p>Sistema con facturación electrónica AFIP, control de caja, ventas, gastos, proveedores y acceso del cliente para ver su historial desde la web.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">AFIP API</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
                     </div>
+                </div>
+            </div>
+
+            <!-- 2. Área Celular -->
+            <div class="portfolio-item reveal" data-cat="sistema" onclick="openModal('project-cel')">
+                <div class="portfolio-thumb">
+                    <img src="./imagenes/area celular/logo.jpeg" alt="Área Celular">
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Área Celular</div>
+                </div>
+                <div class="portfolio-body">
+                    <a href="https://www.areacelular.com.ar" target="_blank" class="url-badge" onclick="event.stopPropagation()">🔗 areacelular.com.ar</a>
+                    <div class="portfolio-tag">Servicio Técnico de Celulares</div>
+                    <h3>Sistema de reparaciones con consulta online</h3>
+                    <p>Registro de equipos con ticket de recibido y entrega, estado de reparaciones, control de ventas y gastos. El cliente consulta el estado con su DNI desde la web.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">Bootstrap</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Fiambrería La Avenida -->
+            <div class="portfolio-item reveal" data-cat="sistema" onclick="openModal('project-fiam')">
+                <div class="portfolio-thumb">
+                    <img src="./imagenes/fiambreria/logo1.jpeg" alt="Fiambrería La Avenida">
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Fiambrería La Avenida</div>
+                </div>
+                <div class="portfolio-body">
+                    <a href="https://www.fiambrerialaavenida.com.ar" target="_blank" class="url-badge" onclick="event.stopPropagation()">🔗 fiambrerialaavenida.com.ar</a>
+                    <div class="portfolio-tag">Sistema de Kiosco / Fiambrería</div>
+                    <h3>Gestión con notificaciones de stock bajo</h3>
+                    <p>Control de stock y productos, ventas, caja, movimientos completos y alertas automáticas cuando el stock es bajo. El cliente puede verificar sus cuentas desde la web.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">Bootstrap</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Sistema Restaurante -->
+            <div class="portfolio-item reveal" data-cat="sistema" onclick="openModal('project-cafe')">
+                <div class="portfolio-thumb">
+                    <img src="./imagenes/cafeteria/logoperfil.webp" alt="Sistema Restaurante">
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Sistema de Restaurante</div>
+                </div>
+                <div class="portfolio-body">
+                    <div class="portfolio-tag">Sistema de Pedidos y Control de Mesas</div>
+                    <h3>Gestión completa para restaurante</h3>
+                    <p>Control de mesas y pedidos en tiempo real, gestión de delivery, caja con propinas y movimientos del día. Interfaz diseñada para trabajar rápido en el salón.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">JS</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Seteco -->
+            <div class="portfolio-item reveal" data-cat="sistema" onclick="openModal('project-set')">
+                <div class="portfolio-thumb">
+                    <img src="./imagenes/seteco/logo.png" alt="Seteco">
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Seteco — Fotocopiadoras</div>
+                </div>
+                <div class="portfolio-body">
+                    <a href="https://www.seteco.com.ar" target="_blank" class="url-badge" onclick="event.stopPropagation()">🔗 seteco.com.ar</a>
+                    <div class="portfolio-tag">Empresa de Reparación y Alquiler de Impresoras</div>
+                    <h3>Sistema de contratos, lecturas y facturación</h3>
+                    <p>Registro de contratos de clientes, toma de lecturas de máquinas prestadas, control de reparaciones, facturación y seguimiento de pagos pendientes.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">Bootstrap</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Minimercado La Verdu -->
+            <div class="portfolio-item reveal" data-cat="ecommerce" onclick="openModal('project-verd')">
+                <div class="portfolio-thumb">
+                    <img src="./imagenes/verduleria/logo.jpg" alt="Minimercado La Verdu">
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Minimercado La Verdu</div>
+                </div>
+                <div class="portfolio-body">
+                    <a href="https://www.minimercadolaverdu.com.ar" target="_blank" class="url-badge" onclick="event.stopPropagation()">🔗 minimercadolaverdu.com.ar</a>
+                    <div class="portfolio-tag">Carrito de Compras Online</div>
+                    <h3>Pedidos online con notificación por WhatsApp</h3>
+                    <p>Sistema tipo Pedidos Ya donde el cliente elige productos, arma el carrito y confirma el pedido. El dueño recibe un WhatsApp automático con el detalle para gestionar la entrega y el pago.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">WhatsApp API</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Sodería -->
+            <div class="portfolio-item reveal" data-cat="sistema" onclick="openModal('project-sod')">
+                <div class="portfolio-thumb">
+                    <img src="./imagenes/soderia/logo2.jpg" alt="Sistema Sodería">
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Sistema de Sodería</div>
+                </div>
+                <div class="portfolio-body">
+                    <div class="portfolio-tag">Sodería — Gestión de Reparto</div>
+                    <h3>Organización de clientes y reparto por día</h3>
+                    <p>Registro de clientes organizados por día de reparto, control de movimientos de pago, gestión de envases y saldo de cada cliente. Optimizado para la operación diaria del repartidor.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">Bootstrap</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Gestión Kiosco -->
+            <div class="portfolio-item reveal" data-cat="sistema" onclick="openModal('project1')">
+                <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1a1a3e, #2d1f6e);">
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><span style="font-size:3rem;opacity:0.2;"><img src="./imagenes/logo (2).png" alt=""></span></div>
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Sistema de Gestión Kiosco</div>
+                </div>
+                <div class="portfolio-body">
+                    <div class="portfolio-tag">Sistema de Ventas</div>
+                    <h3>Gestión completa para Kiosco</h3>
+                    <p>Sistema de punto de venta con control de stock en tiempo real, caja con múltiples formas de pago y reportes financieros.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">Bootstrap</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Estudio Jurídico -->
+            <div class="portfolio-item reveal" data-cat="web" onclick="openModal('project2')">
+                <div class="portfolio-thumb" style="background: linear-gradient(135deg, #1f2a1a, #2a3d20);">
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><span style="font-size:3rem;opacity:0.2;">⚖️</span></div>
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Sitio Web Estudio Jurídico</div>
+                </div>
+                <div class="portfolio-body">
+                    <div class="portfolio-tag">Diseño Web</div>
+                    <h3>Presencia web para Estudio Jurídico</h3>
+                    <p>Sitio web profesional con diseño a medida, secciones informativas y sistema de contacto optimizado para gestión de clientes.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">WordPress</span>
+                            <span class="tech-pill">JS</span>
+                            <span class="tech-pill">CSS3</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Supermercado -->
+            <div class="portfolio-item reveal" data-cat="sistema" onclick="openModal('project4')">
+                <div class="portfolio-thumb" style="background: linear-gradient(135deg, #201a0a, #3d2e08);">
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;"><span style="font-size:3rem;opacity:0.2;"><img src="./imagenes/verduleria/logo.jpg" alt=""></span></div>
+                    <div class="portfolio-thumb-overlay"></div>
+                    <div class="portfolio-thumb-label">Sistema de Gestión Supermercado</div>
+                </div>
+                <div class="portfolio-body">
+                    <div class="portfolio-tag">Sistema Multi-Departamento</div>
+                    <h3>Gestión completa para Supermercado</h3>
+                    <p>Sistema con ventas por departamento (verdulería, pollería, despensa), inventario, caja y reportes financieros detallados.</p>
+                    <div class="portfolio-footer">
+                        <div class="tech-pills">
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">Bootstrap</span>
+                        </div>
+                        <button class="btn-details">Ver más →</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======= MODALS ======= -->
+
+<!-- Panadería El Maná -->
+<div id="project-pan" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Panadería El Maná</h2>
+            <span class="close" onclick="closeModal('project-pan')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="./imagenes/panaderia/inicio.jpeg" alt="Inicio"></div>
+                    <div class="swiper-slide"><img src="./imagenes/panaderia/venta.jpeg" alt="Venta"></div>
+                    <div class="swiper-slide"><img src="./imagenes/panaderia/caja.jpeg" alt="Venta rápida"></div>
+                    <div class="swiper-slide"><img src="./imagenes/panaderia/WhatsApp Image 2026-06-04 at 12.46.12.jpeg" alt="Factura electrónica"></div>
+                    <div class="swiper-slide"><img src="./imagenes/panaderia/movimientos.jpeg" alt="Movimientos"></div>
+                    <div class="swiper-slide"><img src="./imagenes/panaderia/factura.jpeg" alt="Caja"></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema de gestión completo desarrollado para Panadería El Maná, con facturación electrónica integrada con AFIP, control de caja, ventas, gastos y módulo de acceso para clientes que pueden ver su historial desde la web.</p>
+                <h4>Características principales</h4>
+                <p>• Facturación electrónica A, B y C integrada con AFIP</p>
+                <p>• Control de caja: apertura, cierre y movimientos del día</p>
+                <p>• Módulo de ventas con venta rápida y gestión de productos</p>
+                <p>• Registro de gastos y control de proveedores</p>
+                <p>• Portal del cliente: acceso desde la web para ver ventas y gastos</p>
+                <p>• Reportes diarios, semanales y mensuales</p>
+                <p>• URL: <a href="https://www.panaderiaelmana.com.ar" target="_blank" class="modal-url">panaderiaelmana.com.ar ↗</a></p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">AFIP API</span>
+                    <span class="tech-tag">HTML5</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="project2" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Sitio Web — Estudio Jurídico</h2>
-                <span class="close" onclick="closeModal('project2')">✕</span>
+<!-- Área Celular -->
+<div id="project-cel" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Área Celular — Servicio Técnico</h2>
+            <span class="close" onclick="closeModal('project-cel')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="./imagenes/area celular/notificacion.jpeg" alt="Estado de reparaciones"></div>
+                    <div class="swiper-slide"><img src="./imagenes/area celular/compra.jpeg" alt="Ticket de recibido"></div>
+                    <div class="swiper-slide"><img src="./imagenes/area celular/movimientos.jpeg" alt="Ticket de entrega"></div>
+                    <div class="swiper-slide"><img src="./imagenes/area celular/venta.jpeg" alt="Consulta por DNI"></div>
+                    <div class="swiper-slide"><img src="./imagenes/area celular/ticket entrega.jpeg" alt="Control de caja"></div>
+                    <div class="swiper-slide"><img src="./imagenes/area celular/ver cliente.jpeg" alt="Movimientos"></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="modal-body">
-                <img src="./imagenes/abogado10.jpg" alt="Estudio Jurídico" class="project-image">
-                <div class="project-details">
-                    <h4>Descripción</h4>
-                    <p>Sitio web personalizado para un estudio jurídico, diseñado para transmitir profesionalismo y facilitar el contacto con nuevos clientes.</p>
-                    <h4>Características principales</h4>
-                    <p>• Información personal y profesional del abogado</p>
-                    <p>• Sección de servicios y áreas de práctica</p>
-                    <p>• Perfil profesional detallado</p>
-                    <p>• Formulario de contacto con notificaciones automáticas por email</p>
-                    <p>• Diseño responsive y optimizado para SEO</p>
-                    <p>• URL: <a href="https://abogadojuangiordano.vercel.app/" target="_blank" style="color: var(--gold);">abogadojuangiordano.vercel.app</a></p>
-                    <h4>Tecnologías utilizadas</h4>
-                    <div class="tech-stack">
-                        <span class="tech-tag">WordPress</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">CSS3</span>
-                    </div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema completo para servicio técnico de celulares con registro de equipos, generación de tickets de recibido y entrega, seguimiento del estado de reparaciones y módulo de consulta pública donde el cliente ingresa su DNI para ver si su equipo está listo.</p>
+                <h4>Características principales</h4>
+                <p>• Registro de clientes con sus equipos dejados para reparación</p>
+                <p>• Generación de ticket de recibido y ticket de entrega imprimibles</p>
+                <p>• Estados de reparación: recibido, en proceso, listo, entregado</p>
+                <p>• Consulta pública por DNI desde www.areacelular.com.ar</p>
+                <p>• Control de ventas, compras y caja</p>
+                <p>• Notificación automática cuando el equipo está listo</p>
+                <p>• Accesible desde cualquier dispositivo</p>
+                <p>• URL: <a href="https://www.areacelular.com.ar" target="_blank" class="modal-url">areacelular.com.ar ↗</a></p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">HTML5</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="project3" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Sistema de Gestión Zapatería</h2>
-                <span class="close" onclick="closeModal('project3')">✕</span>
+<!-- Fiambrería La Avenida -->
+<div id="project-fiam" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Fiambrería La Avenida</h2>
+            <span class="close" onclick="closeModal('project-fiam')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-slide"><img src="./imagenes/fiambreria/inicio1.jpeg" alt="Inicio"></div>
+                <div class="swiper-slide"><img src="./imagenes/fiambreria/notificacion.jpeg" alt="Panel principal"></div>
+                <div class="swiper-slide"><img src="./imagenes/fiambreria/notificacion1.jpeg" alt="Control de caja"></div>
+                <div class="swiper-slide"><img src="./imagenes/fiambreria/caja1.jpeg" alt="Movimientos"></div>
+                <div class="swiper-slide"><img src="./imagenes/fiambreria/movimientospc.jpeg" alt="Notificación de stock bajo"></div>
             </div>
-            <div class="modal-body">
-                <img src="./imagenes/zapateria.jpg" alt="Zapatería" class="project-image">
-                <div class="project-details">
-                    <h4>Descripción</h4>
-                    <p>Aplicación web completa para gestión de zapatería: control de stock, clientes, proveedores, ventas y apertura/cierre de caja integrados en una sola plataforma.</p>
-                    <h4>Características principales</h4>
-                    <p>• Base de datos de proveedores con historial completo</p>
-                    <p>• Base de datos de clientes con historial de compras</p>
-                    <p>• Sistema de facturación automática</p>
-                    <p>• Alertas automáticas por falta de stock</p>
-                    <p>• Diseño responsive, funciona en móvil y tablet</p>
-                    <h4>Tecnologías utilizadas</h4>
-                    <div class="tech-stack">
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                    </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema de gestión para kiosco/fiambrería con ingreso de stock y productos, control completo de ventas, caja y movimientos. Incluye notificaciones automáticas cuando el stock de un producto es bajo y portal web donde el cliente puede verificar sus cuentas y el dueño actualizar el stock remotamente.</p>
+                <h4>Características principales</h4>
+                <p>• Gestión de productos y categorías con control de stock</p>
+                <p>• Notificaciones automáticas de stock bajo</p>
+                <p>• Registro de todas las ventas y movimientos</p>
+                <p>• Control de caja: apertura, cierre y arqueo</p>
+                <p>• Portal web del cliente para verificar cuentas</p>
+                <p>• Actualización de stock desde cualquier dispositivo</p>
+                <p>• URL: <a href="https://www.fiambrerialaavenida.com.ar" target="_blank" class="modal-url">fiambrerialaavenida.com.ar ↗</a></p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">HTML5</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="project4" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Sistema de Gestión Supermercado</h2>
-                <span class="close" onclick="closeModal('project4')">✕</span>
+<!-- Restaurante / Cafetería -->
+<div id="project-cafe" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Sistema de Restaurante</h2>
+            <span class="close" onclick="closeModal('project-cafe')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-slide"><img src="./imagenes/cafeteria/delivery.jpeg" alt="Control de mesas"></div>
+                <div class="swiper-slide"><img src="./imagenes/cafeteria/mesa.jpeg" alt="Pedidos"></div>
+                <div class="swiper-slide"><img src="./imagenes/cafeteria/pedidos2.jpeg" alt="Delivery"></div>
+                <div class="swiper-slide"><img src="./imagenes/cafeteria/pedidos.jpeg" alt="Movimientos y caja"></div>
+                <div class="swiper-slide"><img src="./imagenes/cafeteria/movimientos.jpeg" alt="Movimientos y caja"></div>
             </div>
-            <div class="modal-body">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="./imagenes/verdu1.jpg" alt="Verdulería 1"></div>
-                        <div class="swiper-slide"><img src="./imagenes/verdu2.jpg" alt="Verdulería 2"></div>
-                        <div class="swiper-slide"><img src="./imagenes/verdu3.jpg" alt="Verdulería 3"></div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-                <div class="project-details">
-                    <h4>Descripción</h4>
-                    <p>Sistema completo para supermercado con gestión multi-departamento (verdulería, pollería, despensa), inventario en tiempo real, caja con múltiples formas de pago y reportes financieros detallados.</p>
-                    <h4>Características principales</h4>
-                    <p>• Control de stock automático con alertas de productos agotados</p>
-                    <p>• Sistema de códigos de barras integrado</p>
-                    <p>• Módulo de ventas separado por departamentos</p>
-                    <p>• Reportes de ventas diarios, semanales y mensuales</p>
-                    <p>• Interfaz intuitiva y fácil de usar</p>
-                    <p>• Backup automático de datos</p>
-                    <h4>Tecnologías utilizadas</h4>
-                    <div class="tech-stack">
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Bootstrap</span>
-                        <span class="tech-tag">HTML5</span>
-                        <span class="tech-tag">CSS3</span>
-                    </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema completo para restaurante con gestión de mesas en tiempo real, control de pedidos en salón y delivery, caja con propinas y registro de todos los movimientos del día.</p>
+                <h4>Características principales</h4>
+                <p>• Mapa de mesas interactivo con estados en tiempo real</p>
+                <p>• Toma de pedidos por mesa con envío directo a cocina</p>
+                <p>• Módulo de delivery con seguimiento de pedidos</p>
+                <p>• Caja con registro de propinas y cierre del día</p>
+                <p>• Historial de movimientos y reportes de ventas</p>
+                <p>• Interfaz optimizada para tablets y uso en el salón</p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">HTML5</span>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Contact -->
-    <section class="contact" id="contacto">
-        <div class="container">
-            <div class="section-label">Contacto</div>
-            <div class="section-title">Contanos tu <span>proyecto</span></div>
-            <div class="contact-grid">
-                <div>
-                    <p class="section-desc" style="margin-bottom: 2.5rem;">Estamos en Córdoba y trabajamos con clientes de toda Argentina. Escribinos sin compromiso y te respondemos rápido.</p>
+<!-- Seteco -->
+<div id="project-set" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Seteco — Impresoras y Fotocopiadoras</h2>
+            <span class="close" onclick="closeModal('project-set')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-slide"><img src="./imagenes/seteco/logeo.jpeg" alt="Ingreso"></div>
+                <div class="swiper-slide"><img src="./imagenes/seteco/contratos.jpeg" alt="Contratos"></div>
+                <div class="swiper-slide"><img src="./imagenes/seteco/cuentas.jpeg" alt="Lecturas de máquinas"></div>
+                <div class="swiper-slide"><img src="./imagenes/seteco/lecturas.jpeg" alt="Máquinas prestadas"></div>
+                <div class="swiper-slide"><img src="./imagenes/seteco/reparacion.jpeg" alt="Reparaciones"></div>
+                <div class="swiper-slide"><img src="./imagenes/seteco/maquinas.jpeg" alt="Movimientos y pagos"></div>
+                <div class="swiper-slide"><img src="./imagenes/seteco/movimientos.jpeg" alt="Movimientos y pagos"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema desarrollado para Seteco, empresa dedicada a la reparación y alquiler de impresoras y fotocopiadoras. Permite gestionar los contratos de clientes, registrar las lecturas periódicas de las máquinas prestadas, controlar reparaciones, emitir facturación y hacer seguimiento de pagos pendientes.</p>
+                <h4>Características principales</h4>
+                <p>• Registro y gestión de contratos de clientes</p>
+                <p>• Toma de lecturas de máquinas alquiladas por período</p>
+                <p>• Control de máquinas en reparación con historial</p>
+                <p>• Módulo de facturación integrado</p>
+                <p>• Seguimiento de movimientos y pagos pendientes por cliente</p>
+                <p>• Acceso desde cualquier dispositivo vía www.seteco.com.ar</p>
+                <p>• URL: <a href="https://www.seteco.com.ar" target="_blank" class="modal-url">seteco.com.ar ↗</a></p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">HTML5</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                    <div class="contact-item reveal">
-                        <div class="contact-icon-wrap">📱</div>
-                        <div class="contact-item-text">
-                            <strong>WhatsApp</strong>
-                            <a href="https://wa.me/5493564581110" target="_blank">+54 9 3564 58-1110</a>
-                        </div>
-                    </div>
-                    <div class="contact-item reveal">
-                        <div class="contact-icon-wrap">📧</div>
-                        <div class="contact-item-text">
-                            <strong>Email</strong>
-                            <a href="mailto:tuwebcom09@gmail.com">tuwebcom09@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item reveal">
-                        <div class="contact-icon-wrap">📍</div>
-                        <div class="contact-item-text">
-                            <strong>Ubicación</strong>
-                            <span>Córdoba, Argentina</span>
-                        </div>
-                    </div>
-                    <div class="contact-item reveal">
-                        <div class="contact-icon-wrap">📷</div>
-                        <div class="contact-item-text">
-                            <strong>Instagram</strong>
-                            <a href="https://www.instagram.com/tuweb_com" target="_blank">@tuweb_com</a>
-                        </div>
+<!-- Minimercado La Verdu -->
+<div id="project-verd" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Minimercado La Verdu — Tienda Online</h2>
+            <span class="close" onclick="closeModal('project-verd')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-slide"><img src="./imagenes/verduleria/logeo.jpeg" alt="Ingreso del cliente"></div>
+                <div class="swiper-slide"><img src="./imagenes/verduleria/carrito.jpeg" alt="Listado de productos"></div>
+                <div class="swiper-slide"><img src="./imagenes/verduleria/ventas.jpeg" alt="Carrito de compras"></div>
+                <div class="swiper-slide"><img src="./imagenes/verduleria/ventas cliente.jpeg" alt="Panel de ventas"></div>
+                <div class="swiper-slide"><img src="./imagenes/verduleria/productos.jpeg" alt="Panel de ventas"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema de carrito de compras online tipo Pedidos Ya para Minimercado La Verdu. El cliente navega el catálogo de productos, los agrega al carrito y confirma el pedido. Al confirmarlo, el dueño recibe automáticamente un mensaje de WhatsApp con el detalle del pedido para coordinar entrega y pago directamente con el cliente.</p>
+                <h4>Características principales</h4>
+                <p>• Catálogo de productos con fotos, precios y categorías</p>
+                <p>• Carrito de compras interactivo y responsivo</p>
+                <p>• Notificación automática por WhatsApp al confirmar el pedido</p>
+                <p>• Panel de administración para gestionar ventas y pedidos</p>
+                <p>• Accesible desde cualquier dispositivo</p>
+                <p>• URL: <a href="https://www.minimercadolaverdu.com.ar" target="_blank" class="modal-url">minimercadolaverdu.com.ar ↗</a></p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">WhatsApp API</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sodería -->
+<div id="project-sod" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Sistema de Sodería</h2>
+            <span class="close" onclick="closeModal('project-sod')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-slide"><img src="./imagenes/soderia/logeo.jpeg" alt="Inicio"></div>
+                <div class="swiper-slide"><img src="./imagenes/soderia/buscar.jpeg" alt="Ficha de cliente"></div>
+                <div class="swiper-slide"><img src="./imagenes/soderia/cliente.jpeg" alt="Búsqueda de clientes"></div>
+                <div class="swiper-slide"><img src="./imagenes/soderia/imprimir clientes.jpeg" alt="Movimientos de pago"></div>
+                <div class="swiper-slide"><img src="./imagenes/soderia/envases.jpeg" alt="Saldo de clientes"></div>
+                <div class="swiper-slide"><img src="./imagenes/soderia/saldo.jpeg" alt="Movimientos de pago"></div>
+                <div class="swiper-slide"><img src="./imagenes/soderia/movimientos.jpeg" alt="Movimientos de pago"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema diseñado para la gestión de una sodería: permite organizar los clientes por día de reparto para optimizar la ruta, registrar los movimientos de pago, controlar envases y consultar el saldo de cada cliente rápidamente.</p>
+                <h4>Características principales</h4>
+                <p>• Registro de clientes con organización por día de reparto</p>
+                <p>• Vista de clientes del día para planificar la ruta</p>
+                <p>• Control de movimientos de pago por cliente</p>
+                <p>• Gestión de envases: entregados y devueltos</p>
+                <p>• Consulta rápida de saldo y cuenta corriente de cada cliente</p>
+                <p>• Búsqueda y filtro de clientes</p>
+                <p>• Impresión del listado de clientes del día</p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">HTML5</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Kiosco (original) -->
+<div id="project1" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Sistema de Gestión Kiosco</h2>
+            <span class="close" onclick="closeModal('project1')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="./imagenes/listado.jpg" alt="Listado"></div>
+                    <div class="swiper-slide"><img src="./imagenes/caja.jpg" alt="Caja"></div>
+                    <div class="swiper-slide"><img src="./imagenes/menu.jpg" alt="Menú"></div>
+                    <div class="swiper-slide"><img src="./imagenes/venta.jpg" alt="Venta"></div>
+                    <div class="swiper-slide"><img src="./imagenes/stock.jpg" alt="Stock"></div>
+                    <div class="swiper-slide"><img src="./imagenes/pedidos.jpg" alt="Pedidos"></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema completo de punto de venta diseñado para kioscos y pequeños comercios. Gestión de inventario en tiempo real, control de stock, módulo de proveedores, caja con múltiples formas de pago y reportes detallados.</p>
+                <h4>Características principales</h4>
+                <p>• Control de stock automático con alertas de productos agotados</p>
+                <p>• Sistema de códigos de barras integrado</p>
+                <p>• Módulo de proveedores con historial de compras</p>
+                <p>• Reportes de ventas diarios, semanales y mensuales</p>
+                <p>• Backup automático de datos</p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">HTML5</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estudio Jurídico (original) -->
+<div id="project2" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Sitio Web — Estudio Jurídico</h2>
+            <span class="close" onclick="closeModal('project2')">✕</span>
+        </div>
+        <div class="modal-body">
+            <img src="./imagenes/abogado10.jpg" alt="Estudio Jurídico" class="project-image">
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sitio web personalizado para un estudio jurídico, diseñado para transmitir profesionalismo y facilitar el contacto con nuevos clientes.</p>
+                <h4>Características principales</h4>
+                <p>• Información personal y profesional del abogado</p>
+                <p>• Sección de servicios y áreas de práctica</p>
+                <p>• Formulario de contacto con notificaciones automáticas por email</p>
+                <p>• Diseño responsive y optimizado para SEO</p>
+                <p>• URL: <a href="https://abogadojuangiordano.vercel.app/" target="_blank" class="modal-url">abogadojuangiordano.vercel.app ↗</a></p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">WordPress</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">CSS3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Supermercado (original) -->
+<div id="project4" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Sistema de Gestión Supermercado</h2>
+            <span class="close" onclick="closeModal('project4')">✕</span>
+        </div>
+        <div class="modal-body">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="./imagenes/verdu1.jpg" alt="Verdulería 1"></div>
+                    <div class="swiper-slide"><img src="./imagenes/verdu2.jpg" alt="Verdulería 2"></div>
+                    <div class="swiper-slide"><img src="./imagenes/verdu3.jpg" alt="Verdulería 3"></div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="project-details">
+                <h4>Descripción</h4>
+                <p>Sistema completo para supermercado con gestión multi-departamento (verdulería, pollería, despensa), inventario en tiempo real, caja y reportes financieros detallados.</p>
+                <h4>Características principales</h4>
+                <p>• Control de stock automático con alertas de productos agotados</p>
+                <p>• Sistema de códigos de barras integrado</p>
+                <p>• Módulo de ventas separado por departamentos</p>
+                <p>• Reportes de ventas diarios, semanales y mensuales</p>
+                <p>• Backup automático de datos</p>
+                <h4>Tecnologías utilizadas</h4>
+                <div class="tech-stack">
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Bootstrap</span>
+                    <span class="tech-tag">HTML5</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact -->
+<section class="contact" id="contacto">
+    <div class="container">
+        <div class="section-label">Contacto</div>
+        <div class="section-title">Contanos tu <span>proyecto</span></div>
+        <div class="contact-grid">
+            <div>
+                <p class="section-desc" style="margin-bottom: 2.5rem;">Estamos en Córdoba y trabajamos con clientes de toda Argentina. Escribinos sin compromiso y te respondemos rápido.</p>
+                <div class="contact-item reveal">
+                    <div class="contact-icon-wrap">📱</div>
+                    <div class="contact-item-text">
+                        <strong>WhatsApp</strong>
+                        <a href="https://wa.me/5493564581110" target="_blank">+54 9 3564 58-1110</a>
                     </div>
                 </div>
-
-                <div class="contact-form-wrap reveal">
-                    <h3>Envianos un mensaje</h3>
-                    <p>Respondemos en menos de 24 horas, generalmente mucho antes.</p>
-                    <form action="https://formspree.io/f/xyzpvppj" method="POST" id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="telefono">Teléfono</label>
-                                <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono">
-                            </div>
+                <div class="contact-item reveal">
+                    <div class="contact-icon-wrap">📧</div>
+                    <div class="contact-item-text">
+                        <strong>Email</strong>
+                        <a href="mailto:tuwebcom09@gmail.com">tuwebcom09@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item reveal">
+                    <div class="contact-icon-wrap">📍</div>
+                    <div class="contact-item-text">
+                        <strong>Ubicación</strong>
+                        <span>Córdoba, Argentina</span>
+                    </div>
+                </div>
+                <div class="contact-item reveal">
+                    <div class="contact-icon-wrap">📷</div>
+                    <div class="contact-item-text">
+                        <strong>Instagram</strong>
+                        <a href="https://www.instagram.com/tuweb_com" target="_blank">@tuweb_com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrap reveal">
+                <h3>Envianos un mensaje</h3>
+                <p>Respondemos en menos de 24 horas, generalmente mucho antes.</p>
+                <form action="https://formspree.io/f/xyzpvppj" method="POST" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono">
                         </div>
-                        <div class="form-group">
-                            <label for="mensaje">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" placeholder="Contanos sobre tu negocio y qué necesitás..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-gold" style="width: 100%; justify-content: center;" id="submitBtn">Enviar mensaje →</button>
-                    </form>
-                    <div id="formStatus" class="form-status"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-inner">
-                <div>
-                    <div class="footer-copy">
-                        <span>© 2024 Tu Web_com</span> — Desarrollo de Software y Diseño Web<br>
-                        Córdoba, Argentina
                     </div>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/tuweb_com" target="_blank" class="social-link" title="Instagram">📷</a>
-                    <a href="https://wa.me/5493564581110" target="_blank" class="social-link" title="WhatsApp">💬</a>
-                    <a href="mailto:tuwebcom09@gmail.com" class="social-link" title="Email">📧</a>
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Contanos sobre tu negocio y qué necesitás..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-gold" style="width: 100%; justify-content: center;" id="submitBtn">Enviar mensaje →</button>
+                </form>
+                <div id="formStatus" class="form-status"></div>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-copy">
+                    <span>© 2025 Tu Web_com</span> — Desarrollo de Software y Diseño Web<br>
+                    Córdoba, Argentina
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/tuweb_com" target="_blank" class="social-link" title="Instagram">📷</a>
+                <a href="https://wa.me/5493564581110" target="_blank" class="social-link" title="WhatsApp">💬</a>
+                <a href="mailto:tuwebcom09@gmail.com" class="social-link" title="Email">📧</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Header scroll
+    window.addEventListener('scroll', () => {
+        document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    function toggleMobile() {
+        document.getElementById('mobileMenu').classList.toggle('open');
+        document.getElementById('hamburger').classList.toggle('active');
+        document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+    }
+    function closeMobile() {
+        document.getElementById('mobileMenu').classList.remove('open');
+        document.getElementById('hamburger').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         });
+    });
 
-        // Mobile menu
-        function toggleMobile() {
-            document.getElementById('mobileMenu').classList.toggle('open');
-            document.getElementById('hamburger').classList.toggle('active');
-            document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
-        }
-        function closeMobile() {
-            document.getElementById('mobileMenu').classList.remove('open');
-            document.getElementById('hamburger').classList.remove('active');
-            document.body.style.overflow = '';
-        }
+    // Portfolio filter
+    function filterPortfolio(cat, btn) {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            if (cat === 'all' || item.dataset.cat === cat) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Modal
+    function openModal(id) {
+        document.getElementById(id).style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        // Init swipers inside newly opened modal
+        setTimeout(() => {
+            document.querySelectorAll('#' + id + ' .mySwiper').forEach(el => {
+                if (!el.swiper) {
+                    new Swiper(el, {
+                        loop: true,
+                        pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
+                        navigation: { nextEl: el.querySelector('.swiper-button-next'), prevEl: el.querySelector('.swiper-button-prev') }
+                    });
                 }
             });
+        }, 50);
+    }
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    window.addEventListener('click', e => {
+        document.querySelectorAll('.modal').forEach(m => {
+            if (e.target === m) { m.style.display = 'none'; document.body.style.overflow = ''; }
         });
+    });
 
-        // Modal
-        function openModal(id) {
-            document.getElementById(id).style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-            document.body.style.overflow = '';
-        }
-        window.addEventListener('click', e => {
-            document.querySelectorAll('.modal').forEach(m => {
-                if (e.target === m) { m.style.display = 'none'; document.body.style.overflow = ''; }
-            });
-        });
-
-        // Form
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            const status = document.getElementById('formStatus');
-            btn.textContent = 'Enviando...';
-            btn.disabled = true;
-            try {
-                const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
-                if (res.ok) {
-                    status.innerHTML = '✓ ¡Mensaje enviado! Te contactaremos pronto.';
-                    status.className = 'form-status success';
-                    status.style.display = 'block';
-                    this.reset();
-                } else throw new Error();
-            } catch {
-                status.innerHTML = '✕ Error al enviar. Intentá nuevamente o escribinos por WhatsApp.';
-                status.className = 'form-status error';
+    // Form
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const status = document.getElementById('formStatus');
+        btn.textContent = 'Enviando...';
+        btn.disabled = true;
+        try {
+            const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } });
+            if (res.ok) {
+                status.innerHTML = '✓ ¡Mensaje enviado! Te contactaremos pronto.';
+                status.className = 'form-status success';
                 status.style.display = 'block';
-            }
-            btn.textContent = 'Enviar mensaje →';
-            btn.disabled = false;
-            setTimeout(() => { status.style.display = 'none'; }, 6000);
-        });
+                this.reset();
+            } else throw new Error();
+        } catch {
+            status.innerHTML = '✕ Error al enviar. Intentá nuevamente o escribinos por WhatsApp.';
+            status.className = 'form-status error';
+            status.style.display = 'block';
+        }
+        btn.textContent = 'Enviar mensaje →';
+        btn.disabled = false;
+        setTimeout(() => { status.style.display = 'none'; }, 6000);
+    });
 
-        // Scroll reveal
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Swiper
-        document.querySelectorAll('.mySwiper').forEach(el => {
-            new Swiper(el, {
-                loop: true,
-                pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
-                navigation: { nextEl: el.querySelector('.swiper-button-next'), prevEl: el.querySelector('.swiper-button-prev') }
-            });
-        });
-    </script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
