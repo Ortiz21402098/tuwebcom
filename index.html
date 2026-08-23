@@ -12,17 +12,17 @@
     <title>Tu Web_com — Desarrollo de Software y Diseño Web</title>
     <style>
         :root {
-            --bg: #0c0c12;
-            --surface: #13131f;
-            --surface2: #1c1c2e;
+            --bg: #ffffff;
+            --surface: #f2f6fc;
+            --surface2: #e6edf9;
             --gold: #f5a623;
             --gold-light: #ffc85e;
-            --gold-glow: rgba(245, 166, 35, 0.15);
-            --cyan: #00d4e8;
-            --text: #e8e8f2;
-            --text-muted: #7878a0;
-            --text-dim: #4a4a6a;
-            --border: rgba(255,255,255,0.07);
+            --gold-glow: rgba(245, 166, 35, 0.12);
+            --cyan: #2563eb;
+            --text: #16213e;
+            --text-muted: #5c6b85;
+            --text-dim: #8b96ab;
+            --border: rgba(22,33,62,0.10);
             --radius: 16px;
             --radius-lg: 24px;
         }
@@ -61,10 +61,11 @@
             transition: all 0.4s ease;
         }
         .header.scrolled {
-            background: rgba(12, 12, 18, 0.92);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 0.8rem 0;
+            box-shadow: 0 4px 20px rgba(22,33,62,0.05);
         }
         .nav {
             display: flex;
@@ -76,13 +77,17 @@
         }
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
         .logo-icon {
-            width: 80px; height: 80px;
-            border-radius: 10px;
+            width: 48px; height: 48px;
+            border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
+            background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 0 1px rgba(22,33,62,0.08), 0 4px 14px rgba(22,33,62,0.12);
         }
         .logo-icon img {
-            width: 100%; height: 100%; object-fit: cover;
+            width: 100%; height: 100%; object-fit: contain;
+            padding: 5px;
         }
         .logo-text { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
         .logo-text span { color: var(--gold); }
@@ -114,12 +119,6 @@
             background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(245,166,35,0.08) 0%, transparent 60%),
                         radial-gradient(ellipse 60% 80% at 20% 80%, rgba(0,212,232,0.05) 0%, transparent 50%), var(--bg);
         }
-        .hero-grid {
-            position: absolute; inset: 0;
-            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-        }
         .hero-container {
             max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2;
             display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
@@ -145,10 +144,12 @@
         .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; font-family: 'DM Sans', sans-serif; }
         .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #0c0c12; box-shadow: 0 8px 24px rgba(245,166,35,0.3); }
         .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(245,166,35,0.45); }
-        .btn-ghost { background: var(--border); color: var(--text); border: 1px solid rgba(255,255,255,0.1); }
-        .btn-ghost:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .btn-ghost { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+        .btn-ghost:hover { background: var(--surface2); border-color: rgba(22,33,62,0.2); transform: translateY(-2px); }
 
         .hero-visual { display: flex; flex-direction: column; gap: 1rem; opacity: 0; animation: fadeLeft 0.9s ease 0.6s forwards; }
+        .hero-illustration { border-radius: var(--radius-lg); overflow: hidden; }
+        .hero-illustration img { width: 100%; height: auto; display: block; }
         .hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; position: relative; overflow: hidden; }
         .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
         .hero-card-title { font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
@@ -162,6 +163,16 @@
 
         @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeLeft { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+
+        /* TRUSTED BY */
+        .trusted { padding: 3rem 0 0.5rem; }
+        .trusted-label { text-align: center; font-size: 0.78rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 1.8rem; }
+        .trusted-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 1rem; }
+        .trusted-logo { width: 150px; height: 90px; background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; padding: 0.9rem; transition: all 0.3s ease; }
+        .trusted-logo:hover { border-color: rgba(37,99,235,0.3); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(22,33,62,0.08); }
+        .trusted-logo img { max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(45%); opacity: 0.85; transition: all 0.3s ease; }
+        .trusted-logo:hover img { filter: grayscale(0%); opacity: 1; }
 
         /* DIFF STRIP */
         .diff-strip { padding: 4rem 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -256,7 +267,7 @@
         .modal-header { padding: 2rem; background: var(--surface2); border-bottom: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: space-between; }
         .modal-header h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; }
         .close { width: 36px; height: 36px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); font-size: 1.2rem; font-weight: 300; transition: all 0.3s; flex-shrink: 0; }
-        .close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+        .close:hover { color: var(--text); border-color: rgba(22,33,62,0.2); }
         .modal-body { padding: 2rem; }
 
         .swiper { border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
@@ -333,6 +344,53 @@
             .form-row { grid-template-columns: 1fr; }
             .footer-inner { flex-direction: column; align-items: flex-start; }
         }
+
+        /* PLANES */
+        .planes { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .planes-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.3rem; align-items: stretch; margin-top: 3.5rem; }
+        .plan-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg);
+            padding: 1.8rem 1.6rem; display: flex; flex-direction: column; transition: all 0.3s ease; position: relative; }
+        .plan-card:hover { transform: translateY(-6px); border-color: rgba(245,166,35,0.35); }
+        .plan-card.featured { border-color: rgba(245,166,35,0.5); background: linear-gradient(180deg, var(--surface2), var(--bg)); }
+        .plan-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: #0c0c12; font-family: 'Syne', sans-serif; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+            padding: 5px 14px; border-radius: 100px; white-space: nowrap; }
+        .plan-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; margin-bottom: 1.1rem; background: var(--gold-glow); border: 1px solid rgba(245,166,35,0.3); }
+        .plan-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; color: var(--gold); }
+        .plan-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.9rem; line-height: 1.25; }
+        .plan-price { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 0.15rem; }
+        .plan-monthly { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem; }
+        .plan-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.3rem; padding-bottom: 1.3rem; border-bottom: 1px solid var(--border); }
+        .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.6rem; flex-grow: 1; }
+        .plan-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.82rem; color: var(--text); line-height: 1.5; }
+        .plan-features .check { color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+        .plan-btn { display: block; text-align: center; padding: 11px; border-radius: 9px; font-weight: 600; font-size: 0.86rem;
+            text-decoration: none; border: 1px solid rgba(245,166,35,0.4); color: var(--gold); transition: all 0.3s; }
+        .plan-btn:hover { background: var(--gold-glow); }
+        .plan-card.featured .plan-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #0c0c12; border: none; }
+        .plan-card.featured .plan-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(245,166,35,0.35); }
+        .planes-included { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.6rem 2.2rem;
+            margin-top: 2.2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+        .planes-included-label { font-family: 'Syne', sans-serif; font-size: 0.92rem; font-weight: 700; flex-shrink: 0; }
+        .planes-included-label span { color: var(--gold); }
+        .planes-included-items { display: flex; gap: 1.8rem; flex-wrap: wrap; flex: 1; }
+        .planes-included-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-muted); }
+        .planes-cta-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; margin-top: 1.3rem; }
+        .planes-cta-box { border-radius: var(--radius-lg); padding: 1.7rem 2rem; }
+        .planes-cta-box.a { background: var(--bg); border: 1px solid var(--border); }
+        .planes-cta-box.b { background: linear-gradient(135deg, rgba(245,166,35,0.14), rgba(245,166,35,0.04)); border: 1px solid rgba(245,166,35,0.3); }
+        .planes-cta-box h4 { font-family: 'Syne', sans-serif; font-size: 1.02rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .planes-cta-box p { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1.1rem; line-height: 1.6; }
+        .planes-cta-link { display: inline-flex; align-items: center; gap: 6px; color: var(--gold); font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+        @media (max-width: 980px) {
+            .planes-grid { grid-template-columns: 1fr 1fr; }
+            .planes-cta-strip { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .planes-grid { grid-template-columns: 1fr; }
+            .planes-included { flex-direction: column; align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
@@ -344,13 +402,14 @@
     <a href="#nosotros" onclick="closeMobile()">Nosotros</a>
     <a href="#servicios" onclick="closeMobile()">Servicios</a>
     <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+    <a href="#planes" onclick="closeMobile()">Planes</a>
     <a href="#contacto" onclick="closeMobile()">Contacto</a>
 </div>
 
 <header class="header" id="header">
     <nav class="nav">
         <a href="#inicio" class="logo">
-            <div class="logo-icon"><img src="./imagenes/panaderia/logotuweb.jpeg" alt="Tu Web_com"></div>
+            <div class="logo-icon"><img src="./imagenes/logo/tuweb-logo.jpeg" alt="Tu Web_com"></div>
             <span class="logo-text">Tu Web<span>_com</span></span>
         </a>
         <ul class="nav-links">
@@ -358,6 +417,7 @@
             <li><a href="#nosotros">Nosotros</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#planes">Planes</a></li>
             <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
         </ul>
         <div class="hamburger" id="hamburger" onclick="toggleMobile()">
@@ -369,7 +429,6 @@
 <!-- Hero -->
 <section class="hero" id="inicio">
     <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
     <div class="hero-container">
         <div class="hero-left">
             <div class="hero-badge">
@@ -384,6 +443,9 @@
             </div>
         </div>
         <div class="hero-visual">
+            <div class="hero-illustration">
+                <img src="./imagenes/hero/hero-illustration.png" alt="Sistemas de gestión de Tu Web_com en laptop y celular">
+            </div>
             <div class="hero-card">
                 <div class="hero-card-title">Proyectos completados</div>
                 <div class="hero-stat-row">
@@ -410,6 +472,22 @@
                     <div class="feature-item"><div class="check">✓</div>Soporte técnico post-entrega incluido</div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trusted by -->
+<section class="trusted">
+    <div class="container">
+        <div class="trusted-label">Empresas que confían en nosotros</div>
+        <div class="trusted-grid">
+            <div class="trusted-logo"><img src="./imagenes/clientes/la-nueva.png" alt="Frutas y Verduras La Nueva"></div>
+            <div class="trusted-logo"><img src="./imagenes/clientes/sinergia-3.0.png" alt="Sinergia 3.0 Grupo Consultor"></div>
+            <div class="trusted-logo"><img src="./imagenes/clientes/area-celular.png" alt="Área Celular Servicio Técnico"></div>
+            <div class="trusted-logo"><img src="./imagenes/clientes/seteco.png" alt="Seteco Computadoras y Copiadoras"></div>
+            <div class="trusted-logo"><img src="./imagenes/clientes/panaderia-el-mana.jpeg" alt="Panadería El Maná II"></div>
+            <div class="trusted-logo"><img src="./imagenes/clientes/fiambres-avenida.jpeg" alt="Fiambres L'avenida"></div>
+            <div class="trusted-logo"><img src="./imagenes/clientes/agua-70.jpg" alt="Agua de Mesa 70"></div>
         </div>
     </div>
 </section>
@@ -788,6 +866,101 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- Planes -->
+<section class="planes" id="planes">
+    <div class="container">
+        <div class="section-label">Planes y precios</div>
+        <div class="section-title">Elegí el plan <span>para tu rubro</span></div>
+        <div class="section-desc">Sistemas de gestión y venta a medida. Precio único de desarrollo + mantenimiento mensual con todo incluido.</div>
+
+        <div class="planes-grid">
+            <div class="plan-card reveal">
+                <div class="plan-icon">🏪</div>
+                <div class="plan-eyebrow">Pack</div>
+                <div class="plan-name">Kiosco &amp; Minorista</div>
+                <div class="plan-price">$400.000</div>
+                <div class="plan-monthly">+ $50.000/mes de mantenimiento</div>
+                <div class="plan-desc">Ideal para kioscos, almacenes y locales de cobro rápido.</div>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Venta ultrarrápida en caja con ticketera</li>
+                    <li><span class="check">✓</span> Control de stock básico e ingresos</li>
+                    <li><span class="check">✓</span> Cierre de caja diario y reportes simples</li>
+                </ul>
+                <a href="#contacto" class="plan-btn" onclick="preseleccionarPlan('Kiosco & Minorista')">Consultar por este plan</a>
+            </div>
+
+            <div class="plan-card reveal">
+                <div class="plan-icon">🛒</div>
+                <div class="plan-eyebrow">Pack</div>
+                <div class="plan-name">Tienda Online / Pedidos</div>
+                <div class="plan-price">$500.000</div>
+                <div class="plan-monthly">+ $50.000/mes de mantenimiento</div>
+                <div class="plan-desc">Ideal para negocios con envío a domicilio sin pagar comisiones.</div>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Tu propia tienda web de pedidos online</li>
+                    <li><span class="check">✓</span> Gestión unificada con descuento automático de stock</li>
+                    <li><span class="check">✓</span> Panel de comisiones y zonas de delivery</li>
+                </ul>
+                <a href="#contacto" class="plan-btn" onclick="preseleccionarPlan('Tienda Online / Pedidos')">Consultar por este plan</a>
+            </div>
+
+            <div class="plan-card featured reveal">
+                <div class="plan-badge">Más elegido</div>
+                <div class="plan-icon">🍽️</div>
+                <div class="plan-eyebrow">Pack</div>
+                <div class="plan-name">Gastronómico Standard</div>
+                <div class="plan-price">$600.000</div>
+                <div class="plan-monthly">+ $50.000/mes de mantenimiento</div>
+                <div class="plan-desc">Ideal para bares, restaurantes y cafeterías.</div>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Mapa de control de mesas en tiempo real</li>
+                    <li><span class="check">✓</span> Envío de comandas a cocina/barra</li>
+                    <li><span class="check">✓</span> Facturación electrónica (AFIP/ARCA) + arqueo por turnos</li>
+                </ul>
+                <a href="#contacto" class="plan-btn" onclick="preseleccionarPlan('Gastronómico Standard')">Consultar por este plan</a>
+            </div>
+
+            <div class="plan-card reveal">
+                <div class="plan-icon">👑</div>
+                <div class="plan-eyebrow">Pack</div>
+                <div class="plan-name">Gastronómico Pro 360°</div>
+                <div class="plan-price">$800.000</div>
+                <div class="plan-monthly">+ $50.000/mes de mantenimiento</div>
+                <div class="plan-desc">La experiencia digital completa para tu local.</div>
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Todo lo del pack Gastronómico + pedido por QR en mesa</li>
+                    <li><span class="check">✓</span> Control completo de delivery y repartidores</li>
+                    <li><span class="check">✓</span> Módulo de división de cuenta y gestión de propinas</li>
+                </ul>
+                <a href="#contacto" class="plan-btn" onclick="preseleccionarPlan('Gastronómico Pro 360°')">Consultar por este plan</a>
+            </div>
+        </div>
+
+        <div class="planes-included reveal">
+            <div class="planes-included-label">Todos los planes incluyen <span>en el mensual de $50.000</span>:</div>
+            <div class="planes-included-items">
+                <div class="planes-included-item">☁️ Servidor en la nube 24/7</div>
+                <div class="planes-included-item">🛡️ Copias de seguridad diarias</div>
+                <div class="planes-included-item">🎧 Soporte técnico personalizado</div>
+                <div class="planes-included-item">🔄 Actualizaciones continuas</div>
+            </div>
+        </div>
+
+        <div class="planes-cta-strip">
+            <div class="planes-cta-box a reveal">
+                <h4>🤝 ¿Querés revender nuestros sistemas en tu ciudad o zona?</h4>
+                <p>Buscamos socios comerciales y revendedores. Dejanos tu mensaje y te contamos nuestras comisiones por venta.</p>
+                <a href="#contacto" class="planes-cta-link" onclick="preseleccionarPlan('Quiero ser revendedor')">Quiero sumarme →</a>
+            </div>
+            <div class="planes-cta-box b reveal">
+                <h4>📞 ¿Hablamos y te asesoramos para tu local?</h4>
+                <p>Escribinos y coordinamos una demo sin compromiso, adaptada a tu rubro.</p>
+                <a href="https://wa.me/5493564581110?text=Hola!%20Quiero%20coordinar%20una%20demo%20sin%20compromiso" target="_blank" class="planes-cta-link">Coordinar demo por WhatsApp →</a>
+            </div>
         </div>
     </div>
 </section>
@@ -1297,6 +1470,20 @@
 </footer>
 
 <script>
+    // Preseleccionar plan en el formulario de contacto
+    function preseleccionarPlan(planName) {
+        const target = document.querySelector('#contacto');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+            const mensaje = document.getElementById('mensaje');
+            if (mensaje && !mensaje.value) {
+                mensaje.value = 'Hola, me interesa el plan "' + planName + '". Quiero más información.';
+            }
+            const nombre = document.getElementById('nombre');
+            if (nombre) nombre.focus();
+        }, 500);
+    }
+
     // Header scroll
     window.addEventListener('scroll', () => {
         document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
